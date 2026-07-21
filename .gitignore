@@ -1,0 +1,15 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.db
+*.sqlite3
+data/
+!data/.gitkeep
+backend/app/**/*.faiss
+backend/app/**/*.bm25
+.pytest_cache/
+.DS_Store
+*.egg-info/
+corpus/uploads/

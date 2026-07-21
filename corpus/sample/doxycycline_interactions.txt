@@ -1,0 +1,32 @@
+===PAGE 1===
+SetuHealth Source Document — FDA-Approved Drug Labeling
+
+Source: openFDA (api.fda.gov), U.S. Food and Drug Administration.
+This text is FDA-approved prescribing information, a work of the U.S. federal
+government and not subject to copyright protection in the United States
+(17 U.S.C. § 105). Retrieved programmatically via the openFDA drug label API.
+
+Generic name: DOXYCYCLINE
+Brand name(s): doxycycline
+Label set_id: 00b2aa98-dea2-90c3-e063-6294a90a35d6
+Label effective date: 2026-05-01
+
+This is prescribing information written for healthcare professionals, reproduced
+here to demonstrate a retrieval system — it is not a substitute for a pharmacist
+or prescriber, and this tool remains a PROTOTYPE, not for real clinical decisions.
+
+
+===PAGE 2===
+Drug Interactions — Anticoagulants and Penicillin
+
+Because tetracyclines have been shown to depress plasma prothrombin activity, patients who are on anticoagulant therapy may require downward adjustment of their anticoagulant dosage. Since bacteriostatic drugs may interfere with the bactericidal action of penicillin, it is advisable to avoid giving tetracyclines in conjunction with penicillin.
+
+===PAGE 3===
+Drug Interactions — Antacids, Calcium, Magnesium, Iron, and Bismuth (Absorption)
+
+Absorption of tetracyclines is impaired by antacids containing aluminum, calcium, or magnesium, and iron-containing preparations. Absorption of tetracyclines is impaired by bismuth subsalicylate.
+
+===PAGE 4===
+Drug Interactions — Barbiturates, Methoxyflurane, and Oral Contraceptives
+
+Barbiturates, carbamazepine, and phenytoin decrease the half-life of doxycycline. The concurrent use of tetracycline and Penthrane (methoxyflurane) has been reported to result in fatal renal toxicity. Concurrent use of tetracycline may render oral contraceptives less effective.

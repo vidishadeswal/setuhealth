@@ -1,0 +1,23 @@
+{"query": "Does warfarin interact with NSAIDs like ibuprofen?", "expected_document_title": "Warfarin Interactions", "expected_page": 3}
+{"query": "Why does my doctor want more frequent INR checks after I start an antibiotic while on warfarin?", "expected_document_title": "Warfarin Interactions", "expected_page": 4}
+{"query": "Should I avoid grapefruit juice or St. John's Wort while taking warfarin?", "expected_document_title": "Warfarin Interactions", "expected_page": 5}
+{"query": "What drugs increase warfarin's effect through CYP450 interactions?", "expected_document_title": "Warfarin Interactions", "expected_page": 2}
+{"query": "Can I take doxycycline with a calcium supplement?", "expected_document_title": "Doxycycline Interactions", "expected_page": 3}
+{"query": "Does doxycycline interact with anticoagulant therapy?", "expected_document_title": "Doxycycline Interactions", "expected_page": 2}
+{"query": "Can I take ciprofloxacin with calcium supplements?", "expected_document_title": "Ciprofloxacin Interactions", "expected_page": 3}
+{"query": "Can ciprofloxacin be combined with theophylline?", "expected_document_title": "Ciprofloxacin Interactions", "expected_page": 2}
+{"query": "Is it safe to combine sertraline with an MAOI?", "expected_document_title": "Sertraline Interactions", "expected_page": 2}
+{"query": "What is serotonin syndrome and which drugs increase the risk when combined with sertraline?", "expected_document_title": "Sertraline Interactions", "expected_page": 2}
+{"query": "Does sertraline affect warfarin's anticoagulant effect?", "expected_document_title": "Sertraline Interactions", "expected_page": 3}
+{"query": "Does grapefruit juice interact with simvastatin?", "expected_document_title": "Simvastatin Interactions", "expected_page": 3}
+{"query": "What CYP3A4 inhibitors increase the risk of myopathy with simvastatin?", "expected_document_title": "Simvastatin Interactions", "expected_page": 2}
+{"query": "Does simvastatin interact with coumarin anticoagulants like warfarin?", "expected_document_title": "Simvastatin Interactions", "expected_page": 4}
+{"query": "Can I take blood thinner with Advil?", "expected_document_title": "Warfarin Interactions", "expected_page": 3, "category": "colloquial"}
+{"query": "Can I take Advil while on warfarin?", "expected_document_title": "Warfarin Interactions", "expected_page": 3, "category": "colloquial"}
+{"query": "Is Tylenol safe with warfarin?", "expected_document_title": "Acetaminophen Interactions", "expected_page": 3, "category": "colloquial"}
+{"query": "Can I take Zoloft with an MAOI?", "expected_document_title": "Sertraline Interactions", "expected_page": 2, "category": "colloquial"}
+{"query": "Does Cipro interact with calcium?", "expected_document_title": "Ciprofloxacin Interactions", "expected_page": 3, "category": "colloquial"}
+{"query": "Can I take Coumadin with ibuprofen?", "expected_document_title": "Warfarin Interactions", "expected_page": 3, "category": "colloquial"}
+{"query": "Is Zocor safe with grapefruit juice?", "expected_document_title": "Simvastatin Interactions", "expected_page": 3, "category": "colloquial"}
+{"query": "Can I take Vibramycin with a calcium supplement?", "expected_document_title": "Doxycycline Interactions", "expected_page": 3, "category": "colloquial"}
+{"query": "Does paracetamol interact with warfarin?", "expected_document_title": "Acetaminophen Interactions", "expected_page": 3, "category": "colloquial"}

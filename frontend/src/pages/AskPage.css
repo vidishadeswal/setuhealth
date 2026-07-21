@@ -1,0 +1,84 @@
+.ask-form textarea {
+  width: 100%;
+  font-family: inherit;
+}
+
+.ask-history {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.result-card {
+  border-left: 3px solid var(--line);
+}
+
+.result-query {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 14px;
+  color: var(--ink-soft);
+}
+
+.result-card:has(.result-emergency) {
+  border-left-color: var(--danger);
+}
+.result-card:has(.result-refused) {
+  border-left-color: var(--caution);
+}
+.result-card:has(.result-answered) {
+  border-left-color: var(--accent);
+}
+
+.result-emergency-note {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+
+.emergency-resources {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 14px;
+}
+.emergency-resources li {
+  margin-bottom: 6px;
+}
+
+.result-refused p {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin: 0 0 4px;
+}
+
+.result-answer {
+  font-size: 15.5px;
+  line-height: 1.65;
+  margin: 0 0 14px;
+  white-space: pre-wrap;
+}
+
+.citations {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.citations-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+
+.citations ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+.citations li {
+  margin-bottom: 3px;
+}

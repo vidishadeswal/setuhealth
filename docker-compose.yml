@@ -1,0 +1,41 @@
+# Optional "real architecture" path (Postgres instead of the SQLite dev default).
+# Ollama is expected to run on the host, not in this compose file — local LLM inference
+# benefits from direct GPU/Metal access that's awkward to pass through a container.
+#   ollama serve   (on the host, before running `docker compose up`)
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: setuhealth
+      POSTGRES_PASSWORD: setuhealth
+      POSTGRES_DB: setuhealth
+    ports:
+      - "5433:5432"  # host 5433 to avoid colliding with any other local Postgres on 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U setuhealth"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://setuhealth:setuhealth@postgres:5432/setuhealth
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      EMBEDDING_MODEL_NAME: BAAI/bge-small-en-v1.5
+      RERANKER_MODEL_NAME: cross-encoder/ms-marco-MiniLM-L-6-v2
+      ADMIN_SECRET_KEY: ${ADMIN_SECRET_KEY}
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+
+volumes:
+  pgdata:

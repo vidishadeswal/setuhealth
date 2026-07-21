@@ -1,0 +1,27 @@
+===PAGE 1===
+SetuHealth Source Document — FDA-Approved Drug Labeling
+
+Source: openFDA (api.fda.gov), U.S. Food and Drug Administration.
+This text is FDA-approved prescribing information, a work of the U.S. federal
+government and not subject to copyright protection in the United States
+(17 U.S.C. § 105). Retrieved programmatically via the openFDA drug label API.
+
+Generic name: ACETAMINOPHEN (also known as paracetamol outside the US)
+Brand name(s): Acetaminophen
+Label set_id: 0f67c1bd-915b-4681-88dd-22f5154a80b3
+Label effective date: 2024-05-06
+
+This is prescribing information written for healthcare professionals, reproduced
+here to demonstrate a retrieval system — it is not a substitute for a pharmacist
+or prescriber, and this tool remains a PROTOTYPE, not for real clinical decisions.
+
+
+===PAGE 2===
+7.1 Effects of Other Substances on Acetaminophen — CYP2E1 Inducers and Alcohol
+
+Substances that induce or regulate hepatic cytochrome enzyme CYP2E1 may alter the metabolism of acetaminophen and increase its hepatotoxic potential. The clinical consequences of these effects have not been established. Effects of ethanol are complex, because excessive alcohol usage can induce hepatic cytochromes, but ethanol also acts as a competitive inhibitor of the metabolism of acetaminophen.
+
+===PAGE 3===
+7.2 Anticoagulants — Acetaminophen and Warfarin
+
+Chronic oral acetaminophen use at a dose of 4000 mg/day has been shown to cause an increase in international normalized ratio (INR) in some patients who have been stabilized on sodium warfarin as an anticoagulant. As no studies have been performed evaluating the short-term use of acetaminophen injection in patients on oral anticoagulants, more frequent assessment of INR may be appropriate in such circumstances.

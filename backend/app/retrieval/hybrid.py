@@ -39,22 +39,40 @@ class HybridRetriever:
         self.faiss_id_to_chunk_id = faiss_id_to_chunk_id
 
     def retrieve(self, query: str, top_k_per_method: int, top_k_fused: int) -> list[FusedCandidate]:
-        bm25_hits = self.bm25_index.search(query, top_k_per_method)
-        bm25_ranked_ids = [cid for cid, _ in bm25_hits]
+        return self.retrieve_multi([query], top_k_per_method, top_k_fused)
 
-        query_vector = embed_query(query)
-        vector_hits = self.vector_index.search(query_vector, top_k_per_method)
-        vector_ranked_ids = [self.faiss_id_to_chunk_id[fid] for fid, _ in vector_hits if fid in self.faiss_id_to_chunk_id]
+    def retrieve_multi(self, queries: list[str], top_k_per_method: int, top_k_fused: int) -> list[FusedCandidate]:
+        """Same fusion as retrieve(), generalized to N query strings — the mechanism
+        behind the LLM query-rewrite fallback (generation/query_rewrite.py): each variant
+        contributes its own BM25 and vector ranked list, and RRF rewards a chunk that
+        multiple variants and/or both retrieval methods independently surface. A single
+        query is just the N=1 case, which is why retrieve() is a one-line wrapper around
+        this rather than separate logic.
+        """
+        ranked_lists: list[list[str]] = []
+        bm25_hit_ids: set[str] = set()
+        vector_hit_ids: set[str] = set()
 
-        fused_scores = reciprocal_rank_fusion([bm25_ranked_ids, vector_ranked_ids])
+        for query in queries:
+            bm25_hits = self.bm25_index.search(query, top_k_per_method)
+            bm25_ranked_ids = [cid for cid, _ in bm25_hits]
+            ranked_lists.append(bm25_ranked_ids)
+            bm25_hit_ids.update(bm25_ranked_ids)
 
-        bm25_set, vector_set = set(bm25_ranked_ids), set(vector_ranked_ids)
+            query_vector = embed_query(query)
+            vector_hits = self.vector_index.search(query_vector, top_k_per_method)
+            vector_ranked_ids = [self.faiss_id_to_chunk_id[fid] for fid, _ in vector_hits if fid in self.faiss_id_to_chunk_id]
+            ranked_lists.append(vector_ranked_ids)
+            vector_hit_ids.update(vector_ranked_ids)
+
+        fused_scores = reciprocal_rank_fusion(ranked_lists)
+
         candidates = [
             FusedCandidate(
                 chunk_id=cid,
                 fused_score=score,
-                in_bm25=cid in bm25_set,
-                in_vector=cid in vector_set,
+                in_bm25=cid in bm25_hit_ids,
+                in_vector=cid in vector_hit_ids,
             )
             for cid, score in fused_scores.items()
         ]

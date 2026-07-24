@@ -10,13 +10,15 @@ from backend.app.core.rate_limit import enforce_ask_rate_limit
 from backend.app.db.session import get_db
 from backend.app.generation.llm_client import generate
 from backend.app.generation.prompt import build_prompt
+from backend.app.generation.query_rewrite import generate_retrieval_variants, has_lexical_overlap
 from backend.app.models.chunk import Chunk
 from backend.app.models.document import Document
 from backend.app.models.query_log import QueryLog, RefusalReason
 from backend.app.models.user import User
+from backend.app.retrieval.hybrid import FusedCandidate, HybridRetriever
 from backend.app.retrieval.query_expansion import expand_query
 from backend.app.retrieval.registry import registry
-from backend.app.retrieval.reranker import rerank
+from backend.app.retrieval.reranker import RerankedChunk, rerank_multi
 from backend.app.safety.confidence import compute_confidence
 from backend.app.safety.emergency import check_emergency
 from backend.app.safety.groundedness import check_groundedness
@@ -46,6 +48,7 @@ class PipelineResult:
     retrieved_chunk_ids: list[str] = field(default_factory=list)
     ungrounded_count: int = 0
     total_sentences: int = 0
+    used_query_rewrite: bool = False
 
 
 @router.post("/ask", response_model=AskResponse)
@@ -85,18 +88,18 @@ async def ask(
     )
 
 
-async def _run_pipeline(db: Session, settings: Settings, query: str) -> PipelineResult:
-    # Expansion bridges brand names and colloquialisms ("Advil", "blood thinner", "Dolo")
-    # to the generic-name vocabulary the corpus is written in. It only ever widens what
-    # retrieval and reranking search for — the LLM prompt below still uses the original
-    # `query`, so the answer is phrased against what was actually asked.
-    retrieval_query = expand_query(query)
-
-    retriever = registry.get_retriever()
-    fused = retriever.retrieve(retrieval_query, settings.top_k_candidates, settings.top_k_candidates)
-
+def _retrieve_and_rerank(
+    db: Session, settings: Settings, retriever: HybridRetriever, queries: list[str]
+) -> tuple[list[RerankedChunk], list[FusedCandidate]]:
+    """Retrieval + reranking for one or more query variants. Both stages see the same
+    variant list: retrieval casts as wide a net as the variants allow, and reranking
+    scores each candidate against every variant and keeps its best score — a paraphrase
+    that widens retrieval but never reaches reranking wouldn't help, since a passage
+    that's genuinely relevant only needs to score well under ONE phrasing to prove it.
+    """
+    fused = retriever.retrieve_multi(queries, settings.top_k_candidates, settings.top_k_candidates)
     if not fused:
-        return PipelineResult(status="refused", refusal_reason=RefusalReason.out_of_scope)
+        return [], fused
 
     chunk_rows = (
         db.query(Chunk, Document.title)
@@ -109,9 +112,49 @@ async def _run_pipeline(db: Session, settings: Settings, query: str) -> Pipeline
         for chunk, title in chunk_rows
     }
     candidates = [chunk_lookup[c.chunk_id] for c in fused if c.chunk_id in chunk_lookup]
+    reranked = rerank_multi(queries, candidates, settings.top_k_reranked)
+    return reranked, fused
 
-    reranked = rerank(retrieval_query, candidates, settings.top_k_reranked)
+
+async def _run_pipeline(db: Session, settings: Settings, query: str) -> PipelineResult:
+    # Expansion bridges brand names and colloquialisms ("Advil", "blood thinner", "Dolo")
+    # to the generic-name vocabulary the corpus is written in. It only ever widens what
+    # retrieval and reranking search for — the LLM prompt below still uses the original
+    # `query`, so the answer is phrased against what was actually asked.
+    retrieval_query = expand_query(query)
+    retriever = registry.get_retriever()
+
+    reranked, fused = _retrieve_and_rerank(db, settings, retriever, [retrieval_query])
+    if not fused:
+        return PipelineResult(status="refused", refusal_reason=RefusalReason.out_of_scope)
     confidence = compute_confidence(reranked, fused)
+
+    # The cheap path (BM25 + vector + alias expansion) already answers most questions.
+    # Only when it isn't enough do we pay for an extra LLM call: ask the model itself for
+    # paraphrases and a HyDE-style hypothetical passage, retrieve again with that wider
+    # net, and keep whichever attempt scored higher. This targets the fallback's latency
+    # cost at exactly the hard cases, instead of taxing every request for it.
+    used_query_rewrite = False
+    if confidence.score < settings.confidence_threshold:
+        variants = await generate_retrieval_variants(query)
+        if variants:
+            retry_reranked, retry_fused = _retrieve_and_rerank(
+                db, settings, retriever, [retrieval_query, *variants]
+            )
+            if retry_fused and retry_reranked:
+                retry_confidence = compute_confidence(retry_reranked, retry_fused)
+                # The overlap check is the actual safety gate here, not the confidence
+                # comparison alone: a fabricated HyDE sentence for a genuinely unrelated
+                # question (e.g. "What is the capital of France?") can score some real
+                # chunk highly on its own — see generation/query_rewrite.py's docstring.
+                # Requiring the REAL query to share real vocabulary with the winning
+                # chunk is what stops that from ever being accepted as an answer.
+                improved = retry_confidence.score > confidence.score
+                grounded_in_real_query = has_lexical_overlap(retrieval_query, retry_reranked[0].content)
+                if improved and grounded_in_real_query:
+                    reranked, fused, confidence = retry_reranked, retry_fused, retry_confidence
+                    used_query_rewrite = True
+
     retrieved_chunk_ids = [r.chunk_id for r in reranked]
 
     if confidence.score < settings.confidence_threshold:
@@ -120,6 +163,7 @@ async def _run_pipeline(db: Session, settings: Settings, query: str) -> Pipeline
             refusal_reason=RefusalReason.low_confidence,
             confidence_score=confidence.score,
             retrieved_chunk_ids=retrieved_chunk_ids,
+            used_query_rewrite=used_query_rewrite,
         )
 
     prompt = build_prompt(query, reranked)
@@ -136,6 +180,7 @@ async def _run_pipeline(db: Session, settings: Settings, query: str) -> Pipeline
             retrieved_chunk_ids=retrieved_chunk_ids,
             ungrounded_count=groundedness.ungrounded_count,
             total_sentences=groundedness.total_sentences,
+            used_query_rewrite=used_query_rewrite,
         )
 
     # Citations reflect what the surviving answer is actually grounded in — the
@@ -156,6 +201,7 @@ async def _run_pipeline(db: Session, settings: Settings, query: str) -> Pipeline
         retrieved_chunk_ids=retrieved_chunk_ids,
         ungrounded_count=groundedness.ungrounded_count,
         total_sentences=groundedness.total_sentences,
+        used_query_rewrite=used_query_rewrite,
     )
 
 

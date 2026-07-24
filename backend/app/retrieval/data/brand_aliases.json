@@ -1,0 +1,248 @@
+{
+  "_count": 80,
+  "_filters": "single-ingredient oral formulations only, matched against the corpus's covered generics",
+  "_source": "Kaggle 'Medicine Dataset' (Medicine_Details.csv, 1mg.com listings) \u2014 unverified provenance",
+  "_usage": "retrieval-query expansion only \u2014 never used as cited/grounding content",
+  "aliases": {
+    "a doxid": [
+      "doxycycline"
+    ],
+    "admol junior": [
+      "acetaminophen"
+    ],
+    "albimol": [
+      "acetaminophen"
+    ],
+    "alciflox": [
+      "ciprofloxacin"
+    ],
+    "algina": [
+      "acetaminophen"
+    ],
+    "babygesic": [
+      "acetaminophen"
+    ],
+    "crocin advance": [
+      "acetaminophen"
+    ],
+    "daxid": [
+      "sertraline"
+    ],
+    "denim p": [
+      "acetaminophen"
+    ],
+    "dolo": [
+      "acetaminophen"
+    ],
+    "dolodart 120mg": [
+      "acetaminophen"
+    ],
+    "elesert": [
+      "sertraline"
+    ],
+    "febrex": [
+      "acetaminophen"
+    ],
+    "febrinil": [
+      "acetaminophen"
+    ],
+    "fevago": [
+      "acetaminophen"
+    ],
+    "fevago ds": [
+      "acetaminophen"
+    ],
+    "fever-x": [
+      "acetaminophen"
+    ],
+    "floxip": [
+      "ciprofloxacin"
+    ],
+    "gempar 1k": [
+      "acetaminophen"
+    ],
+    "glenpar": [
+      "acetaminophen"
+    ],
+    "inosert": [
+      "sertraline"
+    ],
+    "kelvin": [
+      "acetaminophen"
+    ],
+    "lanol er": [
+      "acetaminophen"
+    ],
+    "lucipro": [
+      "ciprofloxacin"
+    ],
+    "lupipara": [
+      "acetaminophen"
+    ],
+    "macfast": [
+      "acetaminophen"
+    ],
+    "magadol": [
+      "acetaminophen"
+    ],
+    "malidens": [
+      "acetaminophen"
+    ],
+    "malidens ds": [
+      "acetaminophen"
+    ],
+    "medomol": [
+      "acetaminophen"
+    ],
+    "merimol": [
+      "acetaminophen"
+    ],
+    "minicycline": [
+      "doxycycline"
+    ],
+    "neomol 170 anal suppository": [
+      "acetaminophen"
+    ],
+    "neomol 250 anal suppository": [
+      "acetaminophen"
+    ],
+    "neomol 80 anal suppository": [
+      "acetaminophen"
+    ],
+    "nexpar": [
+      "acetaminophen"
+    ],
+    "nudoxy": [
+      "doxycycline"
+    ],
+    "opara": [
+      "acetaminophen"
+    ],
+    "optimol": [
+      "acetaminophen"
+    ],
+    "p": [
+      "acetaminophen"
+    ],
+    "pa": [
+      "acetaminophen"
+    ],
+    "pacimol": [
+      "acetaminophen"
+    ],
+    "pacimol ds": [
+      "acetaminophen"
+    ],
+    "pacimol xp": [
+      "acetaminophen"
+    ],
+    "paraband": [
+      "acetaminophen"
+    ],
+    "paracip": [
+      "acetaminophen"
+    ],
+    "paragreat": [
+      "acetaminophen"
+    ],
+    "parasafe": [
+      "acetaminophen"
+    ],
+    "parawel": [
+      "acetaminophen"
+    ],
+    "parpol": [
+      "acetaminophen"
+    ],
+    "parvis": [
+      "acetaminophen"
+    ],
+    "pcm": [
+      "acetaminophen"
+    ],
+    "puc": [
+      "acetaminophen"
+    ],
+    "puc 250mg": [
+      "acetaminophen"
+    ],
+    "pyricool": [
+      "acetaminophen"
+    ],
+    "pyrigesic": [
+      "acetaminophen"
+    ],
+    "s r t": [
+      "sertraline"
+    ],
+    "serlift": [
+      "sertraline"
+    ],
+    "sermind": [
+      "sertraline"
+    ],
+    "sernext": [
+      "sertraline"
+    ],
+    "serta": [
+      "sertraline"
+    ],
+    "sertagress": [
+      "sertraline"
+    ],
+    "sertee": [
+      "sertraline"
+    ],
+    "sertima": [
+      "sertraline"
+    ],
+    "sertin": [
+      "sertraline"
+    ],
+    "simlup": [
+      "simvastatin"
+    ],
+    "simvofix": [
+      "simvastatin"
+    ],
+    "simvotin": [
+      "simvastatin"
+    ],
+    "sumo l": [
+      "acetaminophen"
+    ],
+    "sumo l ds": [
+      "acetaminophen"
+    ],
+    "suppol baby 80mg suppository": [
+      "acetaminophen"
+    ],
+    "suppol child 170mg suppository": [
+      "acetaminophen"
+    ],
+    "t-98 ds": [
+      "acetaminophen"
+    ],
+    "t-98 paediatric": [
+      "acetaminophen"
+    ],
+    "trifect": [
+      "acetaminophen"
+    ],
+    "warf": [
+      "warfarin"
+    ],
+    "welset": [
+      "acetaminophen"
+    ],
+    "zosert": [
+      "sertraline"
+    ],
+    "zotral": [
+      "sertraline"
+    ],
+    "zoxan": [
+      "ciprofloxacin"
+    ]
+  }
+}

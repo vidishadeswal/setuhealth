@@ -7,8 +7,8 @@ __pycache__/
 venv/
 *.db
 *.sqlite3
-data/
-!data/.gitkeep
+/data/
+!/data/.gitkeep
 backend/app/**/*.faiss
 backend/app/**/*.bm25
 .pytest_cache/

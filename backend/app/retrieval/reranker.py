@@ -28,12 +28,29 @@ class RerankedChunk:
 
 def rerank(query: str, candidates: list[dict], top_k: int) -> list[RerankedChunk]:
     """candidates: list of dicts with chunk_id, content, page_number, document_title."""
+    return rerank_multi([query], candidates, top_k)
+
+
+def rerank_multi(queries: list[str], candidates: list[dict], top_k: int) -> list[RerankedChunk]:
+    """Scores every candidate against every query variant and keeps each candidate's
+    best score across them. Used by the LLM query-rewrite fallback (api/routes_ask.py):
+    widening *retrieval* with paraphrases is wasted if reranking still only judges
+    relevance against the one original phrasing the cross-encoder happened to score
+    low — a paraphrase only needs to match the passage well under ONE of its phrasings
+    to prove the chunk is actually relevant. A single query is the N=1 case, which is
+    why rerank() is a one-line wrapper around this rather than separate logic.
+    """
     if not candidates:
         return []
 
     model = _get_reranker()
-    pairs = [(query, c["content"]) for c in candidates]
-    scores = model.predict(pairs)
+    best_scores = [float("-inf")] * len(candidates)
+    for query in queries:
+        pairs = [(query, c["content"]) for c in candidates]
+        scores = model.predict(pairs)
+        for i, score in enumerate(scores):
+            if score > best_scores[i]:
+                best_scores[i] = float(score)
 
     scored = [
         RerankedChunk(
@@ -41,9 +58,9 @@ def rerank(query: str, candidates: list[dict], top_k: int) -> list[RerankedChunk
             content=c["content"],
             page_number=c.get("page_number"),
             document_title=c["document_title"],
-            rerank_score=float(score),
+            rerank_score=best_scores[i],
         )
-        for c, score in zip(candidates, scores)
+        for i, c in enumerate(candidates)
     ]
     scored.sort(key=lambda r: r.rerank_score, reverse=True)
     return scored[:top_k]

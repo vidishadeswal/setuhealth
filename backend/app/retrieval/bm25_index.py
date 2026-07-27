@@ -12,7 +12,13 @@ _TOKEN_RE = re.compile(r"[a-z0-9]+")
 
 
 def tokenize(text: str) -> list[str]:
-    return _TOKEN_RE.findall(text.lower())
+    # Hyphens stripped before splitting, not treated as a token boundary: the corpus
+    # writes "anti-fungals" (FDA label style), a real query says "antifungal" — plain
+    # regex tokenization makes those ["anti", "fungals"] vs ["antifungal"], sharing zero
+    # tokens. Joining first makes both "antifungals"/"antifungal" — still not a perfect
+    # singular/plural match (that would need stemming), but closes the hyphen gap, which
+    # recurs across this corpus (anti-coagulant, co-administration, non-steroidal...).
+    return _TOKEN_RE.findall(text.lower().replace("-", ""))
 
 
 class BM25Index:

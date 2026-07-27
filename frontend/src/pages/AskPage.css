@@ -1,3 +1,16 @@
+.corpus-scope-note {
+  font-size: 13px;
+  color: var(--ink-faint);
+  background: var(--accent-soft);
+  border-radius: 7px;
+  padding: 9px 12px;
+  margin: 12px 0 0;
+  max-width: 60ch;
+}
+.corpus-scope-note strong {
+  color: var(--ink-soft);
+}
+
 .ask-form textarea {
   width: 100%;
   font-family: inherit;
@@ -75,10 +88,68 @@
 
 .citations ul {
   margin: 0;
-  padding-left: 20px;
+  padding-left: 0;
+  list-style: none;
   font-size: 13.5px;
   color: var(--ink-soft);
 }
-.citations li {
+.citation-item {
   margin-bottom: 3px;
+}
+
+.citation-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--ink-soft);
+  cursor: pointer;
+  text-align: left;
+}
+.citation-toggle:hover {
+  color: var(--ink-strong, var(--ink-soft));
+  text-decoration: underline;
+}
+.citation-caret {
+  display: inline-block;
+  width: 1em;
+  color: var(--ink-faint);
+}
+
+.citation-passage {
+  margin: 6px 0 10px 20px;
+  padding: 10px 12px;
+  background: var(--accent-soft);
+  border-radius: 7px;
+  font-size: 13px;
+  line-height: 1.55;
+  max-width: 70ch;
+}
+.citation-passage p {
+  margin: 0 0 8px;
+}
+.citation-passage p:last-child {
+  margin-bottom: 0;
+}
+
+.passage-table-wrap {
+  overflow-x: auto;
+  margin: 4px 0 8px;
+}
+.passage-table {
+  border-collapse: collapse;
+  font-size: 12.5px;
+  min-width: 100%;
+}
+.passage-table th,
+.passage-table td {
+  border: 1px solid var(--line);
+  padding: 5px 8px;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.passage-table th {
+  font-weight: 700;
+  background: var(--surface, transparent);
 }

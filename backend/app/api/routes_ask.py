@@ -16,7 +16,7 @@ from backend.app.models.document import Document
 from backend.app.models.query_log import QueryLog, RefusalReason
 from backend.app.models.user import User
 from backend.app.retrieval.hybrid import FusedCandidate, HybridRetriever
-from backend.app.retrieval.query_expansion import expand_query
+from backend.app.retrieval.query_expansion import expand_query, find_aliases
 from backend.app.retrieval.registry import registry
 from backend.app.retrieval.reranker import RerankedChunk, rerank_multi
 from backend.app.safety.confidence import compute_confidence
@@ -166,7 +166,7 @@ async def _run_pipeline(db: Session, settings: Settings, query: str) -> Pipeline
             used_query_rewrite=used_query_rewrite,
         )
 
-    prompt = build_prompt(query, reranked)
+    prompt = build_prompt(query, reranked, alias_hints=find_aliases(query))
     answer_text = await generate(prompt)
 
     groundedness = check_groundedness(answer_text, [r.content for r in reranked])
@@ -188,7 +188,12 @@ async def _run_pipeline(db: Session, settings: Settings, query: str) -> Pipeline
     # write in a citation marker (see generation/prompt.py).
     cited_chunk_indices = dict.fromkeys(s.best_chunk_index for s in groundedness.grounded_sentences)
     citations = [
-        Citation(document_title=reranked[i].document_title, page_number=reranked[i].page_number, chunk_id=reranked[i].chunk_id)
+        Citation(
+            document_title=reranked[i].document_title,
+            page_number=reranked[i].page_number,
+            chunk_id=reranked[i].chunk_id,
+            content=reranked[i].content,
+        )
         for i in cited_chunk_indices
         if i is not None
     ]

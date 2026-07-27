@@ -21,3 +21,6 @@
 {"query": "Is Zocor safe with grapefruit juice?", "expected_document_title": "Simvastatin Interactions", "expected_page": 3, "category": "colloquial"}
 {"query": "Can I take Vibramycin with a calcium supplement?", "expected_document_title": "Doxycycline Interactions", "expected_page": 3, "category": "colloquial"}
 {"query": "Does paracetamol interact with warfarin?", "expected_document_title": "Acetaminophen Interactions", "expected_page": 3, "category": "colloquial"}
+{"query": "Can I take my cholesterol medicine with an antifungal?", "expected_document_title": "Simvastatin Interactions", "expected_page": 2, "category": "colloquial"}
+{"query": "can i take dolo with warfrin", "expected_document_title": "Acetaminophen Interactions", "expected_page": 3, "category": "typo"}
+{"query": "Is my antidepressant safe with tramadol?", "expected_document_title": "Sertraline Interactions", "expected_page": 2, "category": "colloquial"}

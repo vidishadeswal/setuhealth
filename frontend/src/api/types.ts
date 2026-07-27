@@ -10,6 +10,7 @@ export interface Citation {
   document_title: string;
   page_number: number | null;
   chunk_id: string;
+  content: string;
 }
 
 export interface EmergencyResource {

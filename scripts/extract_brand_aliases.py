@@ -25,7 +25,9 @@ from pathlib import Path
 
 OUTPUT_PATH = Path(__file__).resolve().parents[1] / "backend" / "app" / "retrieval" / "data" / "brand_aliases.json"
 
-# generic name as it appears in Composition -> canonical name as used in the corpus
+# generic name as it appears in Composition -> canonical name as used in the corpus.
+# The Kaggle dataset is India-sourced (1mg.com), so a few entries use British/Indian
+# spelling conventions that differ from the US FDA generic name used in the corpus.
 CORPUS_GENERICS = {
     "warfarin": "warfarin",
     "doxycycline": "doxycycline",
@@ -33,6 +35,23 @@ CORPUS_GENERICS = {
     "sertraline": "sertraline",
     "simvastatin": "simvastatin",
     "paracetamol": "acetaminophen",
+    "ibuprofen": "ibuprofen",
+    "clopidogrel": "clopidogrel",
+    "digoxin": "digoxin",
+    "methotrexate": "methotrexate",
+    "phenytoin": "phenytoin",
+    "ciclosporin": "cyclosporine",  # British spelling in this dataset
+    "metformin": "metformin",
+    "atorvastatin": "atorvastatin",
+    "lisinopril": "lisinopril",
+    "omeprazole": "omeprazole",
+    "thyroxine": "levothyroxine",  # dataset uses "thyroxine", not "levothyroxine"
+    "amoxycillin": "amoxicillin",  # British spelling in this dataset
+    "azithromycin": "azithromycin",
+    "fluoxetine": "fluoxetine",
+    "amlodipine": "amlodipine",
+    # No Kaggle matches found for tramadol under any spelling checked — covered by the
+    # hand-curated brand aliases in query_expansion.py (DRUG_ALIASES) instead.
 }
 
 NON_ORAL_RE = re.compile(r"\b(eye|ear|ointment|injection|infusion|drops?|cream|gel|lotion|inhaler|nasal|topical)\b", re.IGNORECASE)

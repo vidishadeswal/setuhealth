@@ -8,7 +8,7 @@ import httpx
 from backend.app.config import get_settings
 
 
-async def generate(prompt: str, temperature: float = 0.1) -> str:
+async def generate(prompt: str, temperature: float = 0.0) -> str:
     settings = get_settings()
     async with httpx.AsyncClient(timeout=120.0) as client:
         response = await client.post(

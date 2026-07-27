@@ -1,0 +1,47 @@
+===PAGE 1===
+SetuHealth Source Document — FDA-Approved Drug Labeling
+
+Source: openFDA (api.fda.gov), U.S. Food and Drug Administration.
+This text is FDA-approved prescribing information, a work of the U.S. federal
+government and not subject to copyright protection in the United States
+(17 U.S.C. § 105). Retrieved programmatically via the openFDA drug label API.
+
+Generic name: AMOXICILLIN
+Brand name(s): Amoxicillin
+Label set_id: 00fbd46e-05fd-4f8a-9f59-a7a4d01c8e54
+Label effective date: 2023-12-18
+
+This is prescribing information written for healthcare professionals, reproduced
+here to demonstrate a retrieval system — it is not a substitute for a pharmacist
+or prescriber, and this tool remains a PROTOTYPE, not for real clinical decisions.
+
+
+===PAGE 2===
+Section 7.1 — Drug Interactions
+
+7.1 Probenecid Probenecid decreases the renal tubular secretion of amoxicillin. Concurrent use of amoxicillin and probenecid may result in increased and prolonged blood levels of amoxicillin.
+
+===PAGE 3===
+Section 7.2 — Drug Interactions
+
+7.2 Oral Anticoagulants Abnormal prolongation of prothrombin time (increased international normalized ratio [INR]) has been reported in patients receiving amoxicillin and oral anticoagulants. Appropriate monitoring should be undertaken when anticoagulants are prescribed concurrently. Adjustments in the dose of oral anticoagulants may be necessary to maintain the desired level of anticoagulation.
+
+===PAGE 4===
+Section 7.3 — Drug Interactions
+
+7.3 Allopurinol The concurrent administration of allopurinol and amoxicillin increases the incidence of rashes in patients receiving both drugs as compared to patients receiving amoxicillin alone. It is not known whether this potentiation of rashes is due to allopurinol or the hyperuricemia present in these patients.
+
+===PAGE 5===
+Section 7.4 — Drug Interactions
+
+7.4 Oral Contraceptives Amoxicillin may affect the intestinal flora, leading to lower estrogen reabsorption and reduced efficacy of combined oral estrogen/progesterone contraceptives.
+
+===PAGE 6===
+Section 7.5 — Drug Interactions
+
+7.5 Other Antibacterials Chloramphenicol, macrolides, sulfonamides, and tetracyclines may interfere with the bactericidal effects of penicillin. This has been demonstrated in vitro ; however, the clinical significance of this interaction is not well documented.
+
+===PAGE 7===
+Section 7.6 — Drug Interactions
+
+7.6 Effects on Laboratory Tests High urine concentrations of ampicillin may result in false-positive reactions when testing for the presence of glucose in urine using CLINITEST ® , Benedict’s Solution, or Fehling’s Solution. Since this effect may also occur with amoxicillin, it is recommended that glucose tests based on enzymatic glucose oxidase reactions (such as CLINISTIX ® ) be used. Following administration of ampicillin or amoxicillin to pregnant women, a transient decrease in plasma concentration of total conjugated estriol, estriol-glucuronide, conjugated estrone, and estradiol has been noted.

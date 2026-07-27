@@ -1,4 +1,4 @@
-from backend.app.retrieval.query_expansion import expand_query
+from backend.app.retrieval.query_expansion import expand_query, find_aliases
 
 
 def test_brand_name_expands_to_generic():
@@ -36,3 +36,37 @@ def test_generated_indian_brand_names_are_loaded():
     # of the corpus's covered generics only, e.g. Warf (warfarin), Simvotin (simvastatin).
     assert "warfarin" in expand_query("Can I take Warf 5 with ibuprofen?").lower()
     assert "simvastatin" in expand_query("Is Simvotin safe with grapefruit juice?").lower()
+
+
+def test_typo_of_generic_name_is_fuzzy_corrected():
+    # Regression test: "can i take dolo with warfrin" scored 20% confidence in live
+    # testing because "warfrin" never matched "warfarin" anywhere — a real, common
+    # failure mode (people mistype drug names), not an edge case.
+    aliases = find_aliases("can i take dolo with warfrin")
+    assert "warfarin" in aliases["warfrin"]
+
+
+def test_typo_of_brand_alias_is_fuzzy_corrected():
+    aliases = find_aliases("is simvotan safe with grapefruit juice")
+    assert "simvastatin" in aliases.get("simvotan", [])
+
+
+def test_fuzzy_matching_does_not_false_positive_on_ordinary_words():
+    for query in [
+        "What are the side effects of taking multiple medications together?",
+        "Should elderly patients avoid certain combinations?",
+        "What foods should I avoid while taking antibiotics?",
+    ]:
+        assert find_aliases(query) == {}
+
+
+def test_category_level_alias_expands_to_every_corpus_drug_in_that_class():
+    # Simvastatin and atorvastatin are both statins in the corpus, so "cholesterol
+    # medicine" can't be pinned to one — it must expand to both.
+    expanded = expand_query("Can I take my cholesterol medicine with an antifungal?").lower()
+    assert "simvastatin" in expanded
+    assert "atorvastatin" in expanded
+    # Same for sertraline and fluoxetine as antidepressants.
+    expanded = expand_query("Is my antidepressant safe with grapefruit?").lower()
+    assert "sertraline" in expanded
+    assert "fluoxetine" in expanded

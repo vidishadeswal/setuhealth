@@ -1,5 +1,5 @@
 {
-  "_count": 80,
+  "_count": 335,
   "_filters": "single-ingredient oral formulations only, matched against the corpus's covered generics",
   "_source": "Kaggle 'Medicine Dataset' (Medicine_Details.csv, 1mg.com listings) \u2014 unverified provenance",
   "_usage": "retrieval-query expansion only \u2014 never used as cited/grounding content",
@@ -10,6 +10,9 @@
     "admol junior": [
       "acetaminophen"
     ],
+    "adp": [
+      "amlodipine"
+    ],
     "albimol": [
       "acetaminophen"
     ],
@@ -19,8 +22,221 @@
     "algina": [
       "acetaminophen"
     ],
+    "almox": [
+      "amoxicillin"
+    ],
+    "amcard": [
+      "amlodipine"
+    ],
+    "amchek": [
+      "amlodipine"
+    ],
+    "amdepin": [
+      "amlodipine"
+    ],
+    "amlip": [
+      "amlodipine"
+    ],
+    "amlodac": [
+      "amlodipine"
+    ],
+    "amlogard": [
+      "amlodipine"
+    ],
+    "amlokind": [
+      "amlodipine"
+    ],
+    "amlong": [
+      "amlodipine"
+    ],
+    "amlopin": [
+      "amlodipine"
+    ],
+    "amlopres": [
+      "amlodipine"
+    ],
+    "amlovas": [
+      "amlodipine"
+    ],
+    "amtas": [
+      "amlodipine"
+    ],
+    "angicam": [
+      "amlodipine"
+    ],
+    "arpimune me": [
+      "cyclosporine"
+    ],
+    "asomex": [
+      "amlodipine"
+    ],
+    "astin": [
+      "atorvastatin"
+    ],
+    "atchol": [
+      "atorvastatin"
+    ],
+    "atm": [
+      "azithromycin"
+    ],
+    "atm xl 100mg": [
+      "azithromycin"
+    ],
+    "atocor": [
+      "atorvastatin"
+    ],
+    "atorbest": [
+      "atorvastatin"
+    ],
+    "atorec": [
+      "atorvastatin"
+    ],
+    "atorfit": [
+      "atorvastatin"
+    ],
+    "atorin": [
+      "atorvastatin"
+    ],
+    "atorlip": [
+      "atorvastatin"
+    ],
+    "atormac": [
+      "atorvastatin"
+    ],
+    "atorsave": [
+      "atorvastatin"
+    ],
+    "atorva": [
+      "atorvastatin"
+    ],
+    "avas": [
+      "atorvastatin"
+    ],
+    "azam": [
+      "azithromycin"
+    ],
+    "azax": [
+      "azithromycin"
+    ],
+    "azee": [
+      "azithromycin"
+    ],
+    "azee 100mg dry": [
+      "azithromycin"
+    ],
+    "azee 200mg dry": [
+      "azithromycin"
+    ],
+    "azee xl 100mg dry": [
+      "azithromycin"
+    ],
+    "azee xl 200mg dry": [
+      "azithromycin"
+    ],
+    "azerva": [
+      "atorvastatin"
+    ],
+    "azibact": [
+      "azithromycin"
+    ],
+    "azibact 100 readymix": [
+      "azithromycin"
+    ],
+    "azibact 200 readymix": [
+      "azithromycin"
+    ],
+    "azibact lr 100 readymix": [
+      "azithromycin"
+    ],
+    "azibest": [
+      "azithromycin"
+    ],
+    "azicip": [
+      "azithromycin"
+    ],
+    "aziclass": [
+      "azithromycin"
+    ],
+    "azifast": [
+      "azithromycin"
+    ],
+    "azikem": [
+      "azithromycin"
+    ],
+    "azilide": [
+      "azithromycin"
+    ],
+    "azilide -xl redimed": [
+      "azithromycin"
+    ],
+    "azimax": [
+      "azithromycin"
+    ],
+    "azimax 200 dry": [
+      "azithromycin"
+    ],
+    "aziquest": [
+      "azithromycin"
+    ],
+    "azithral": [
+      "azithromycin"
+    ],
+    "azithral 100 liquid": [
+      "azithromycin"
+    ],
+    "azithral 200 liquid": [
+      "azithromycin"
+    ],
+    "azithral kidtab": [
+      "azithromycin"
+    ],
+    "azithral xl 200 liquid": [
+      "azithromycin"
+    ],
+    "azithral-xl 100 liquid": [
+      "azithromycin"
+    ],
+    "azitus xl": [
+      "azithromycin"
+    ],
+    "azivent": [
+      "azithromycin"
+    ],
+    "azivent-xl 100mg rediuse": [
+      "azithromycin"
+    ],
+    "aziwin": [
+      "azithromycin"
+    ],
+    "aziwok": [
+      "azithromycin"
+    ],
+    "aziwok-xl 200 liquid": [
+      "azithromycin"
+    ],
+    "aztor": [
+      "atorvastatin"
+    ],
     "babygesic": [
       "acetaminophen"
+    ],
+    "beteala": [
+      "fluoxetine"
+    ],
+    "bigomet": [
+      "metformin"
+    ],
+    "bigomet sr": [
+      "metformin"
+    ],
+    "blumox": [
+      "amoxicillin"
+    ],
+    "brufen": [
+      "ibuprofen"
+    ],
+    "bymet": [
+      "metformin"
     ],
     "crocin advance": [
       "acetaminophen"
@@ -31,14 +247,95 @@
     "denim p": [
       "acetaminophen"
     ],
+    "diamet": [
+      "metformin"
+    ],
+    "dilantin": [
+      "phenytoin"
+    ],
+    "dixin paed": [
+      "digoxin"
+    ],
     "dolo": [
       "acetaminophen"
     ],
     "dolodart 120mg": [
       "acetaminophen"
     ],
+    "dysliptin": [
+      "atorvastatin"
+    ],
+    "ecothral": [
+      "azithromycin"
+    ],
+    "elcephase": [
+      "metformin"
+    ],
     "elesert": [
       "sertraline"
+    ],
+    "eltroxin": [
+      "levothyroxine"
+    ],
+    "epsolin": [
+      "phenytoin"
+    ],
+    "epsolin er": [
+      "phenytoin"
+    ],
+    "eptoin": [
+      "phenytoin"
+    ],
+    "eptoin 300 er": [
+      "phenytoin"
+    ],
+    "esam": [
+      "amlodipine"
+    ],
+    "eslo": [
+      "amlodipine"
+    ],
+    "esofag": [
+      "omeprazole"
+    ],
+    "esofine": [
+      "omeprazole"
+    ],
+    "esogress": [
+      "omeprazole"
+    ],
+    "esole delayed release granules": [
+      "omeprazole"
+    ],
+    "esomac": [
+      "omeprazole"
+    ],
+    "esomefol": [
+      "omeprazole"
+    ],
+    "esoz": [
+      "omeprazole"
+    ],
+    "espin": [
+      "amlodipine"
+    ],
+    "espra": [
+      "omeprazole"
+    ],
+    "esys": [
+      "omeprazole"
+    ],
+    "euthyroid": [
+      "levothyroxine"
+    ],
+    "euthyrox": [
+      "levothyroxine"
+    ],
+    "exermet": [
+      "metformin"
+    ],
+    "exermet 500 sr": [
+      "metformin"
     ],
     "febrex": [
       "acetaminophen"
@@ -55,32 +352,149 @@
     "fever-x": [
       "acetaminophen"
     ],
+    "flame": [
+      "fluoxetine"
+    ],
+    "floatin": [
+      "fluoxetine"
+    ],
     "floxip": [
       "ciprofloxacin"
+    ],
+    "floxiwave": [
+      "fluoxetine"
+    ],
+    "fludac": [
+      "fluoxetine"
+    ],
+    "flunam": [
+      "fluoxetine"
+    ],
+    "flunil": [
+      "fluoxetine"
+    ],
+    "flutee": [
+      "fluoxetine"
+    ],
+    "folitrax": [
+      "methotrexate"
+    ],
+    "formin-sr": [
+      "metformin"
     ],
     "gempar 1k": [
       "acetaminophen"
     ],
+    "genericart metformin hydrochloride": [
+      "metformin"
+    ],
+    "genxvast": [
+      "atorvastatin"
+    ],
     "glenpar": [
       "acetaminophen"
+    ],
+    "gluconorm sr": [
+      "metformin"
+    ],
+    "gluformin": [
+      "metformin"
+    ],
+    "gluformin xl new": [
+      "metformin"
+    ],
+    "glyciphage": [
+      "metformin"
+    ],
+    "glyciphage sr": [
+      "metformin"
+    ],
+    "glycomet": [
+      "metformin"
+    ],
+    "glycomet 500 sr": [
+      "metformin"
+    ],
+    "glycomet 850 sr": [
+      "metformin"
+    ],
+    "hhazi": [
+      "azithromycin"
+    ],
+    "hmet-forte": [
+      "metformin"
+    ],
+    "ibithral": [
+      "azithromycin"
+    ],
+    "iminoral": [
+      "cyclosporine"
     ],
     "inosert": [
       "sertraline"
     ],
+    "ismet": [
+      "metformin"
+    ],
+    "k-met": [
+      "metformin"
+    ],
     "kelvin": [
       "acetaminophen"
+    ],
+    "labmox": [
+      "amoxicillin"
     ],
     "lanol er": [
       "acetaminophen"
     ],
+    "lanoxin": [
+      "digoxin"
+    ],
+    "laz": [
+      "azithromycin"
+    ],
+    "lethyrox": [
+      "levothyroxine"
+    ],
+    "lipicure": [
+      "atorvastatin"
+    ],
+    "lipikind": [
+      "atorvastatin"
+    ],
+    "liponorm": [
+      "atorvastatin"
+    ],
+    "lipril": [
+      "lisinopril"
+    ],
+    "lipvas": [
+      "atorvastatin"
+    ],
+    "listril": [
+      "lisinopril"
+    ],
     "lucipro": [
       "ciprofloxacin"
+    ],
+    "lupidip": [
+      "amlodipine"
     ],
     "lupipara": [
       "acetaminophen"
     ],
+    "lupisoz": [
+      "omeprazole"
+    ],
     "macfast": [
       "acetaminophen"
+    ],
+    "macrozac": [
+      "azithromycin"
+    ],
+    "mactor": [
+      "atorvastatin"
     ],
     "magadol": [
       "acetaminophen"
@@ -91,14 +505,98 @@
     "malidens ds": [
       "acetaminophen"
     ],
+    "maxformin": [
+      "metformin"
+    ],
     "medomol": [
       "acetaminophen"
+    ],
+    "mefomin 1000 sr": [
+      "metformin"
+    ],
+    "mefomin 500 sr": [
+      "metformin"
+    ],
+    "melmet": [
+      "metformin"
+    ],
+    "melmet 1000 sr": [
+      "metformin"
+    ],
+    "melmet 500 sr": [
+      "metformin"
     ],
     "merimol": [
       "acetaminophen"
     ],
+    "metaday": [
+      "metformin"
+    ],
+    "metadoze-ipr": [
+      "metformin"
+    ],
+    "metafort": [
+      "metformin"
+    ],
+    "metasens": [
+      "metformin"
+    ],
+    "metatime 1000 xr": [
+      "metformin"
+    ],
+    "metgem": [
+      "metformin"
+    ],
+    "methosis": [
+      "methotrexate"
+    ],
+    "metlong": [
+      "metformin"
+    ],
+    "metlong-ds": [
+      "metformin"
+    ],
+    "metmin": [
+      "metformin"
+    ],
+    "metofix-xl": [
+      "metformin"
+    ],
+    "metsmall": [
+      "metformin"
+    ],
+    "mexate": [
+      "methotrexate"
+    ],
+    "mext": [
+      "methotrexate"
+    ],
     "minicycline": [
       "doxycycline"
+    ],
+    "modlip": [
+      "atorvastatin"
+    ],
+    "mox": [
+      "amoxicillin"
+    ],
+    "mox kid": [
+      "amoxicillin"
+    ],
+    "mox redimix": [
+      "amoxicillin"
+    ],
+    "moxikem": [
+      "amoxicillin"
+    ],
+    "mr met": [
+      "metformin"
+    ],
+    "myodura": [
+      "amlodipine"
+    ],
+    "neksium": [
+      "omeprazole"
     ],
     "neomol 170 anal suppository": [
       "acetaminophen"
@@ -109,17 +607,98 @@
     "neomol 80 anal suppository": [
       "acetaminophen"
     ],
+    "nexomep": [
+      "omeprazole"
+    ],
+    "nexopil": [
+      "omeprazole"
+    ],
     "nexpar": [
       "acetaminophen"
     ],
+    "nexpro": [
+      "omeprazole"
+    ],
+    "nexpro fast": [
+      "omeprazole"
+    ],
+    "nexpro junior granules for": [
+      "omeprazole"
+    ],
+    "novamox": [
+      "amoxicillin"
+    ],
+    "novamox 125 dt": [
+      "amoxicillin"
+    ],
+    "novamox 125 rediuse": [
+      "amoxicillin"
+    ],
+    "novamox 250 dt": [
+      "amoxicillin"
+    ],
+    "novamox 250 rediuse": [
+      "amoxicillin"
+    ],
     "nudoxy": [
       "doxycycline"
+    ],
+    "obimet": [
+      "metformin"
+    ],
+    "obimet sr": [
+      "metformin"
+    ],
+    "ocid": [
+      "omeprazole"
+    ],
+    "ocid qrs": [
+      "omeprazole"
+    ],
+    "odepraz": [
+      "omeprazole"
+    ],
+    "okamet": [
+      "metformin"
+    ],
+    "omecip": [
+      "omeprazole"
+    ],
+    "omee": [
+      "omeprazole"
+    ],
+    "omefol": [
+      "omeprazole"
+    ],
+    "omesec": [
+      "omeprazole"
+    ],
+    "ometab": [
+      "omeprazole"
+    ],
+    "omez": [
+      "omeprazole"
+    ],
+    "omez ff": [
+      "omeprazole"
+    ],
+    "omez insta sachet mint": [
+      "omeprazole"
+    ],
+    "oncotrex": [
+      "methotrexate"
     ],
     "opara": [
       "acetaminophen"
     ],
     "optimol": [
       "acetaminophen"
+    ],
+    "orvas": [
+      "atorvastatin"
+    ],
+    "ozovas": [
+      "atorvastatin"
     ],
     "p": [
       "acetaminophen"
@@ -135,6 +714,9 @@
     ],
     "pacimol xp": [
       "acetaminophen"
+    ],
+    "panimun bioral": [
+      "cyclosporine"
     ],
     "paraband": [
       "acetaminophen"
@@ -160,6 +742,30 @@
     "pcm": [
       "acetaminophen"
     ],
+    "plagerine": [
+      "clopidogrel"
+    ],
+    "plagril": [
+      "clopidogrel"
+    ],
+    "plavix": [
+      "clopidogrel"
+    ],
+    "pratham 100 rediuse": [
+      "azithromycin"
+    ],
+    "preva": [
+      "clopidogrel"
+    ],
+    "primodil": [
+      "amlodipine"
+    ],
+    "prodep": [
+      "fluoxetine"
+    ],
+    "psorid": [
+      "cyclosporine"
+    ],
     "puc": [
       "acetaminophen"
     ],
@@ -172,8 +778,41 @@
     "pyrigesic": [
       "acetaminophen"
     ],
+    "raciper": [
+      "omeprazole"
+    ],
+    "remetor": [
+      "atorvastatin"
+    ],
+    "restasis ophthalmic emulsion (0.4ml each)": [
+      "cyclosporine"
+    ],
+    "riomet od": [
+      "metformin"
+    ],
     "s r t": [
       "sertraline"
+    ],
+    "s-amcard": [
+      "amlodipine"
+    ],
+    "s-amlong": [
+      "amlodipine"
+    ],
+    "s-amlosafe": [
+      "amlodipine"
+    ],
+    "s-amopress": [
+      "amlodipine"
+    ],
+    "s-numlo": [
+      "amlodipine"
+    ],
+    "sandimmun neoral 50mg soft gelatin": [
+      "cyclosporine"
+    ],
+    "scodia sr": [
+      "metformin"
     ],
     "serlift": [
       "sertraline"
@@ -208,6 +847,24 @@
     "simvotin": [
       "simvastatin"
     ],
+    "sompraz": [
+      "omeprazole"
+    ],
+    "sprintas": [
+      "cyclosporine"
+    ],
+    "stamlo": [
+      "amlodipine"
+    ],
+    "statix": [
+      "atorvastatin"
+    ],
+    "stator": [
+      "atorvastatin"
+    ],
+    "storvas": [
+      "atorvastatin"
+    ],
     "sumo l": [
       "acetaminophen"
     ],
@@ -226,14 +883,122 @@
     "t-98 paediatric": [
       "acetaminophen"
     ],
+    "tg-tor": [
+      "atorvastatin"
+    ],
+    "thyronex": [
+      "levothyroxine"
+    ],
+    "thyronorm": [
+      "levothyroxine"
+    ],
+    "thyrotas": [
+      "levothyroxine"
+    ],
+    "thyrox": [
+      "levothyroxine"
+    ],
+    "tonact": [
+      "atorvastatin"
+    ],
+    "torvason": [
+      "atorvastatin"
+    ],
     "trifect": [
       "acetaminophen"
+    ],
+    "trulimax": [
+      "azithromycin"
+    ],
+    "uthral": [
+      "azithromycin"
+    ],
+    "walaphage": [
+      "metformin"
+    ],
+    "walaphage -sr": [
+      "metformin"
     ],
     "warf": [
       "warfarin"
     ],
     "welset": [
       "acetaminophen"
+    ],
+    "xmet": [
+      "metformin"
+    ],
+    "xmet-sr": [
+      "metformin"
+    ],
+    "xtor": [
+      "atorvastatin"
+    ],
+    "zady": [
+      "azithromycin"
+    ],
+    "zady readymix": [
+      "azithromycin"
+    ],
+    "zady redimix": [
+      "azithromycin"
+    ],
+    "zathrin": [
+      "azithromycin"
+    ],
+    "zathrin 100 readymix": [
+      "azithromycin"
+    ],
+    "zatura": [
+      "azithromycin"
+    ],
+    "zedep": [
+      "fluoxetine"
+    ],
+    "zeethrom": [
+      "azithromycin"
+    ],
+    "zithium": [
+      "azithromycin"
+    ],
+    "zithrocin": [
+      "azithromycin"
+    ],
+    "zithrocin 200mg": [
+      "azithromycin"
+    ],
+    "zithrocin xl": [
+      "azithromycin"
+    ],
+    "zithrokem": [
+      "azithromycin"
+    ],
+    "zithrolect": [
+      "azithromycin"
+    ],
+    "zithrox": [
+      "azithromycin"
+    ],
+    "zithrox 200 readyuse": [
+      "azithromycin"
+    ],
+    "zithrox xl 200mg/5ml dry": [
+      "azithromycin"
+    ],
+    "zivast": [
+      "atorvastatin"
+    ],
+    "zoform-sr": [
+      "metformin"
+    ],
+    "zomet": [
+      "metformin"
+    ],
+    "zomet sr": [
+      "metformin"
+    ],
+    "zoreso": [
+      "omeprazole"
     ],
     "zosert": [
       "sertraline"

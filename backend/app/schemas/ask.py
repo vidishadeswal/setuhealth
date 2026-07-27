@@ -9,6 +9,7 @@ class Citation(BaseModel):
     document_title: str
     page_number: int | None
     chunk_id: str
+    content: str
 
 
 class EmergencyResource(BaseModel):

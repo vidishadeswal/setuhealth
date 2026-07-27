@@ -21,23 +21,98 @@ Two tiers, kept deliberately separate:
     that applies to anything actually cited to a user.
 """
 
+import difflib
 import json
 import re
 from pathlib import Path
 
+# The corpus's actual generic drug names — used both as fuzzy-match targets below (a
+# misspelled generic name needs correcting too, not just misspelled brand names) and as
+# documentation of what this whole alias system is ultimately resolving toward.
+CORPUS_GENERICS = [
+    "warfarin", "doxycycline", "ciprofloxacin", "sertraline", "simvastatin", "acetaminophen",
+    "ibuprofen", "tramadol", "clopidogrel", "digoxin", "methotrexate", "phenytoin", "cyclosporine",
+    "metformin", "atorvastatin", "lisinopril", "omeprazole", "levothyroxine", "amoxicillin",
+    "azithromycin", "fluoxetine", "amlodipine",
+]
+
 # colloquial term or brand name -> canonical generic name(s) as they appear in the corpus.
 # Multi-word keys are matched as phrases. Extend this table as the corpus grows.
 DRUG_ALIASES: dict[str, list[str]] = {
-    # Warfarin
+    # Warfarin and clopidogrel — both are colloquially called "blood thinners" by
+    # patients even though pharmacologically warfarin is an anticoagulant and
+    # clopidogrel is an antiplatelet. Expanding to both rather than picking one avoids
+    # silently missing the drug the patient actually means.
     "coumadin": ["warfarin"],
     "jantoven": ["warfarin"],
-    "blood thinner": ["warfarin", "anticoagulant"],
-    "blood thinners": ["warfarin", "anticoagulant"],
+    "blood thinner": ["warfarin", "clopidogrel", "anticoagulant"],
+    "blood thinners": ["warfarin", "clopidogrel", "anticoagulant"],
     # Ibuprofen
     "advil": ["ibuprofen"],
     "motrin": ["ibuprofen"],
     "nurofen": ["ibuprofen"],
     "brufen": ["ibuprofen"],
+    # Tramadol
+    "ultram": ["tramadol"],
+    "conzip": ["tramadol"],
+    # Clopidogrel
+    "plavix": ["clopidogrel"],
+    # Digoxin
+    "lanoxin": ["digoxin"],
+    # Methotrexate
+    "trexall": ["methotrexate"],
+    "otrexup": ["methotrexate"],
+    # Phenytoin
+    "dilantin": ["phenytoin"],
+    "anticonvulsant": ["phenytoin"],
+    "seizure medicine": ["phenytoin"],
+    # Cyclosporine
+    "neoral": ["cyclosporine"],
+    "sandimmune": ["cyclosporine"],
+    "gengraf": ["cyclosporine"],
+    "immunosuppressant": ["cyclosporine"],
+    # Metformin
+    "glucophage": ["metformin"],
+    "fortamet": ["metformin"],
+    "glumetza": ["metformin"],
+    "diabetes medicine": ["metformin"],
+    "diabetes pill": ["metformin"],
+    "sugar medicine": ["metformin"],
+    # Atorvastatin
+    "lipitor": ["atorvastatin"],
+    # Lisinopril and amlodipine — both treat blood pressure, so a colloquial
+    # "bp medicine" reference is expanded to both rather than guessed.
+    "prinivil": ["lisinopril"],
+    "zestril": ["lisinopril"],
+    "ace inhibitor": ["lisinopril"],
+    "blood pressure medicine": ["lisinopril", "amlodipine"],
+    "bp medicine": ["lisinopril", "amlodipine"],
+    "bp tablet": ["lisinopril", "amlodipine"],
+    # Omeprazole
+    "prilosec": ["omeprazole"],
+    "losec": ["omeprazole"],
+    "acid reducer": ["omeprazole"],
+    "heartburn medicine": ["omeprazole"],
+    # Levothyroxine
+    "synthroid": ["levothyroxine"],
+    "levoxyl": ["levothyroxine"],
+    "euthyrox": ["levothyroxine"],
+    "thyroid medicine": ["levothyroxine"],
+    "thyroid pill": ["levothyroxine"],
+    # Amoxicillin
+    "amoxil": ["amoxicillin"],
+    "trimox": ["amoxicillin"],
+    # Azithromycin
+    "zithromax": ["azithromycin"],
+    "z-pack": ["azithromycin"],
+    "zpack": ["azithromycin"],
+    "zmax": ["azithromycin"],
+    # Fluoxetine
+    "prozac": ["fluoxetine"],
+    "sarafem": ["fluoxetine"],
+    # Amlodipine
+    "norvasc": ["amlodipine"],
+    "calcium channel blocker": ["amlodipine"],
     # Acetaminophen / paracetamol — both terms are cross-referenced since either may be
     # the query term or the corpus term depending on the user's region.
     "paracetamol": ["acetaminophen"],
@@ -54,10 +129,20 @@ DRUG_ALIASES: dict[str, list[str]] = {
     "monodox": ["doxycycline"],
     # Ciprofloxacin
     "cipro": ["ciprofloxacin"],
-    # Sertraline
+    # Sertraline and fluoxetine are both SSRIs in this corpus now, so an indication-level
+    # reference ("my antidepressant") can no longer be pinned to one — expand to both and
+    # let retrieval/reranking sort out which passage actually matches. Brand names stay
+    # unambiguous since they each name one specific drug.
     "zoloft": ["sertraline"],
-    # Simvastatin
+    "antidepressant": ["sertraline", "fluoxetine"],
+    "my antidepressant": ["sertraline", "fluoxetine"],
+    "ssri": ["sertraline", "fluoxetine"],
+    # Simvastatin and atorvastatin are both statins in this corpus now — same reasoning.
     "zocor": ["simvastatin"],
+    "statin": ["simvastatin", "atorvastatin"],
+    "cholesterol medicine": ["simvastatin", "atorvastatin"],
+    "cholesterol medication": ["simvastatin", "atorvastatin"],
+    "cholesterol pill": ["simvastatin", "atorvastatin"],
 }
 
 _GENERATED_ALIASES_PATH = Path(__file__).parent / "data" / "brand_aliases.json"
@@ -91,16 +176,66 @@ _PATTERN = re.compile(
 )
 
 
+# Fuzzy-match targets: single-word alias keys plus the corpus's own generic names — a
+# typo'd generic name ("warfrin") needs correcting just as much as a typo'd brand name.
+# Multi-word keys (e.g. "blood thinner") are excluded: fuzzy-matching whole phrases
+# against single mistyped words is a different, noisier problem than this is meant to
+# solve.
+_FUZZY_TARGETS: dict[str, list[str]] = {
+    **{k: v for k, v in ALL_ALIASES.items() if " " not in k},
+    **{g: [g] for g in CORPUS_GENERICS},
+}
+_WORD_RE = re.compile(r"[a-zA-Z]+")
+_FUZZY_MIN_LENGTH = 5  # shorter words risk too many false-positive "close" matches
+_FUZZY_CUTOFF = 0.82  # difflib similarity ratio; ~1 edit on a 6-8 letter drug name
+
+
+def _fuzzy_matches(query: str, already_matched: set[str]) -> dict[str, list[str]]:
+    """Catches simple misspellings of drug names ("warfrin" -> warfarin) that exact
+    alias matching can't. Real users mistype drug names constantly, especially on
+    mobile. Deliberately conservative — long words only, high similarity cutoff — same
+    "boring beats clever" bar as the rest of this module: a wrong fuzzy correction would
+    silently misdirect retrieval, so it's better to miss a typo than guess one wrong.
+    """
+    corrections: dict[str, list[str]] = {}
+    for word in _WORD_RE.findall(query):
+        lower = word.lower()
+        if len(lower) < _FUZZY_MIN_LENGTH or lower in already_matched or lower in _FUZZY_TARGETS:
+            continue
+        close = difflib.get_close_matches(lower, _FUZZY_TARGETS, n=1, cutoff=_FUZZY_CUTOFF)
+        if close:
+            corrections[word] = _FUZZY_TARGETS[close[0]]
+    return corrections
+
+
+def find_aliases(query: str) -> dict[str, list[str]]:
+    """Returns {matched term (as written in the query): [canonical generic name(s)]}
+    for every alias recognized in the query, preserving first-seen order — exact alias
+    matches first, then fuzzy-corrected typos of drug names not otherwise matched.
+    Exposed separately from expand_query() so callers that need to know *which* terms
+    resolved to *what* — not just the retrieval-query string — can use it too. See
+    generation/prompt.py: the LLM only ever sees the user's original phrasing, so if a
+    query says "Dolo" and the only relevant passage is about "acetaminophen", the model
+    has no way to make that connection unless it's told explicitly.
+    """
+    matches: dict[str, list[str]] = {}
+    for match in _PATTERN.finditer(query):
+        matched_text = match.group(0)
+        matches[matched_text] = ALL_ALIASES[matched_text.lower()]
+
+    already_matched = {m.lower() for m in matches}
+    matches.update(_fuzzy_matches(query, already_matched))
+    return matches
+
+
 def expand_query(query: str) -> str:
     """Appends canonical generic-name terms for any recognized alias found in the query.
     Retrieval-only — never shown to the user or passed to the LLM as the question asked.
     """
-    matched_terms: list[str] = []
-    for match in _PATTERN.finditer(query):
-        matched_terms.extend(ALL_ALIASES[match.group(0).lower()])
-
-    if not matched_terms:
+    aliases = find_aliases(query)
+    if not aliases:
         return query
 
+    matched_terms = [canonical for canonicals in aliases.values() for canonical in canonicals]
     unique_terms = dict.fromkeys(matched_terms)  # de-dup, preserve first-seen order
     return f"{query} {' '.join(unique_terms)}"

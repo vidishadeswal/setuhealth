@@ -1,6 +1,7 @@
-import { useState, type FormEvent } from 'react';
-import { askQuestion, ApiError } from '../api/client';
-import type { AskResponse } from '../api/types';
+import { useEffect, useState, type FormEvent } from 'react';
+import { askQuestion, getSources, ApiError } from '../api/client';
+import type { AskResponse, Citation } from '../api/types';
+import { parsePassageContent } from '../utils/parsePassage';
 import './AskPage.css';
 
 interface HistoryEntry {
@@ -10,15 +11,27 @@ interface HistoryEntry {
 }
 
 const REFUSAL_COPY: Record<string, string> = {
-  low_confidence: 'Retrieval confidence was below the safety threshold for this question — SetuHealth would rather say nothing than guess.',
+  low_confidence:
+    'Retrieval confidence was below the safety threshold for this question — SetuHealth would rather say nothing than guess. This usually means the drug isn\'t in the current corpus (see below), or the interaction isn\'t addressed in that drug\'s label.',
   out_of_scope: "This question doesn't match anything in the current drug-interaction corpus.",
 };
+
+function titleToDrugName(title: string): string {
+  return title.replace(/\s+Interactions$/i, '');
+}
 
 export function AskPage() {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [coveredDrugs, setCoveredDrugs] = useState<string[] | null>(null);
+
+  useEffect(() => {
+    getSources()
+      .then((docs) => setCoveredDrugs(docs.map((d) => titleToDrugName(d.title)).sort()))
+      .catch(() => setCoveredDrugs(null)); // non-critical — the page works without this note
+  }, []);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -47,6 +60,13 @@ export function AskPage() {
       <div className="page-head">
         <h1>Ask a drug-interaction question</h1>
         <p>Answers are grounded only in the ingested corpus below, with a citation for every claim.</p>
+        {coveredDrugs && coveredDrugs.length > 0 && (
+          <p className="corpus-scope-note">
+            This demo currently covers: <strong>{coveredDrugs.join(', ')}</strong>. A question about
+            anything else will be correctly refused as out of scope, not answered incorrectly — see{' '}
+            <a href="/sources">Sources</a> for the exact documents.
+          </p>
+        )}
       </div>
 
       <form onSubmit={handleSubmit} className="card ask-form">
@@ -126,16 +146,60 @@ function ResultCard({ query, response }: { query: string; response: AskResponse 
               <div className="citations-label">Sources</div>
               <ul>
                 {response.citations.map((c) => (
-                  <li key={c.chunk_id}>
-                    {c.document_title}
-                    {c.page_number !== null && <>, p.{c.page_number}</>}
-                  </li>
+                  <CitationItem key={c.chunk_id} citation={c} />
                 ))}
               </ul>
             </div>
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+function CitationItem({ citation }: { citation: Citation }) {
+  const [expanded, setExpanded] = useState(false);
+  const parsed = parsePassageContent(citation.content);
+
+  return (
+    <li className="citation-item">
+      <button type="button" className="citation-toggle" onClick={() => setExpanded((v) => !v)}>
+        <span className="citation-caret">{expanded ? '▾' : '▸'}</span>
+        {citation.document_title}
+        {citation.page_number !== null && <>, p.{citation.page_number}</>}
+      </button>
+      {expanded && (
+        <div className="citation-passage">
+          {parsed.prefix && <p>{parsed.prefix}</p>}
+          {parsed.table && <PassageTable table={parsed.table} />}
+          {parsed.suffix && <p>{parsed.suffix}</p>}
+        </div>
+      )}
+    </li>
+  );
+}
+
+function PassageTable({ table }: { table: { headers: string[]; rows: string[][] } }) {
+  return (
+    <div className="passage-table-wrap">
+      <table className="passage-table">
+        <thead>
+          <tr>
+            {table.headers.map((h, i) => (
+              <th key={i}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((row, i) => (
+            <tr key={i}>
+              {row.map((cell, j) => (
+                <td key={j}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

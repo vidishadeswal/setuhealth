@@ -20,11 +20,15 @@ class Settings(BaseSettings):
     admin_secret_key: str = "dev-only-insecure-key-replace-me"
     access_token_expire_minutes: int = 120
 
-    # Calibrated via eval/threshold_sweep.py: 0.30-0.45 is a plateau of 83% answer rate
+    # Calibrated via eval/threshold_sweep.py: 0.30-0.45 is a plateau of 96% answer rate
     # on the positive eval set with 0% leakage on genuinely out-of-scope negatives (which
-    # never scored above 0.10) — 0.45 is the lowest threshold in that plateau, maximizing
-    # both answer rate and safety margin. Re-run the sweep before changing this.
-    confidence_threshold: float = 0.45
+    # never scored above 0.10). Set to 0.40, not the plateau's own floor of 0.45 —
+    # borderline real questions (e.g. "cholesterol medicine" + "antifungal", both
+    # resolvable via query_expansion.py but landing at ~0.44 due to reranker phrasing
+    # sensitivity) sit just under 0.45 with genuinely correct retrieval underneath them.
+    # 0.40 keeps a full 0.30 safety margin above the highest observed negative (0.10) —
+    # more margin than 0.45 had. Re-run the sweep before changing this further.
+    confidence_threshold: float = 0.40
     top_k_candidates: int = 20
     top_k_reranked: int = 5
     chunk_token_size: int = 350

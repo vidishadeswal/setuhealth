@@ -228,6 +228,20 @@ def find_aliases(query: str) -> dict[str, list[str]]:
     return matches
 
 
+def relevant_drug_names(query: str) -> set[str]:
+    """Canonical corpus drug names the query is actually asking about — both directly
+    named ("warfarin") and alias-resolved ("paracetamol" -> acetaminophen). Used by
+    routes_ask.py to keep a passage that merely *mentions* one of these drugs inside
+    some unrelated drug's own interactions section (e.g. Azithromycin's label happens
+    to have its own "7.2 Warfarin" section) from outranking that drug's own document,
+    which is the authoritative source for describing its side of the interaction.
+    """
+    lowered = query.lower()
+    direct = {g for g in CORPUS_GENERICS if re.search(rf"\b{re.escape(g)}\b", lowered)}
+    aliased = {c for canonicals in find_aliases(query).values() for c in canonicals if c in CORPUS_GENERICS}
+    return direct | aliased
+
+
 def expand_query(query: str) -> str:
     """Appends canonical generic-name terms for any recognized alias found in the query.
     Retrieval-only — never shown to the user or passed to the LLM as the question asked.

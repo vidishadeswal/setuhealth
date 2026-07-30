@@ -30,6 +30,37 @@ SECTION_RE = re.compile(r"\d\.\d+(?=\s+[A-Z])")
 TABLE_RE = re.compile(r"Table \d+:")
 BOILERPLATE_LEAD_RE = re.compile(r"^\d+\s+DRUG INTERACTIONS\s*")
 
+# Secondary split for "Table N:"-fallback pages: many such labels list one interacting
+# drug class per subsection, each written as "<Class Name> Clinical Impact: <text>
+# Intervention: <text>" with no other markup — reliable because "Clinical Impact:" is a
+# consistent literal FDA phrase, unlike the free-form class-name headers themselves.
+# Without this, a page like ibuprofen's or tramadol's ends up as one multi-topic blob
+# (ACE-inhibitors, aspirin, lithium, warfarin, etc. all bundled together), which in
+# testing caused the LLM to occasionally answer from the wrong drug class in that blob
+# even though the right one was right there in the same chunk.
+_HEADER_WORD = r"(?:[A-Z(][\w()/\-]*|of|and|the|or)"
+CLINICAL_IMPACT_RE = re.compile(rf"((?:{_HEADER_WORD}\s+){{0,10}}{_HEADER_WORD})\s+Clinical Impact:")
+TABLE_PREAMBLE_RE = re.compile(
+    r"^Table \d+:\s*Clinically (?:Significant|Relevant) Drug Interactions? (?:with|Affecting)[^.]*?"
+    r"(?=\b[A-Z][a-zA-Z0-9()/\-]*(?:\s+(?:of|and|the|or)\s+[A-Z(][\w()/\-]*)* Clinical Impact:)"
+)
+
+
+def _split_on_clinical_impact(title: str, body: str) -> list[tuple[str, str]]:
+    cleaned = TABLE_PREAMBLE_RE.sub("", body)
+    matches = list(CLINICAL_IMPACT_RE.finditer(cleaned))
+    if len(matches) < 2:
+        return [(title, body)]
+
+    pages = []
+    for i, m in enumerate(matches):
+        start = m.start(1)
+        end = matches[i + 1].start(1) if i + 1 < len(matches) else len(cleaned)
+        section_body = cleaned[start:end].strip()
+        if section_body:
+            pages.append((f"{title} — {m.group(1).strip()}", section_body))
+    return pages
+
 HEADER = """SetuHealth Source Document — FDA-Approved Drug Labeling
 
 Source: openFDA (api.fda.gov), U.S. Food and Drug Administration.
@@ -56,14 +87,14 @@ def split_pages(text: str) -> list[tuple[str, str]]:
     marks = section_marks or table_marks
 
     if not marks:
-        return [("Drug Interactions", text)]
+        return _split_on_clinical_impact("Drug Interactions", text)
 
     pages = []
     for i, (start, label) in enumerate(marks):
         end = marks[i + 1][0] if i + 1 < len(marks) else len(text)
         body = text[start:end].strip()
         if body:
-            pages.append((f"Section {label} — Drug Interactions", body))
+            pages.extend(_split_on_clinical_impact(f"Section {label} — Drug Interactions", body))
     return pages
 
 

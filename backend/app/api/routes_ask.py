@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass, field
 
 from fastapi import APIRouter, Depends
@@ -16,7 +17,7 @@ from backend.app.models.document import Document
 from backend.app.models.query_log import QueryLog, RefusalReason
 from backend.app.models.user import User
 from backend.app.retrieval.hybrid import FusedCandidate, HybridRetriever
-from backend.app.retrieval.query_expansion import expand_query, find_aliases
+from backend.app.retrieval.query_expansion import expand_query, find_aliases, relevant_drug_names
 from backend.app.retrieval.registry import registry
 from backend.app.retrieval.reranker import RerankedChunk, rerank_multi
 from backend.app.safety.confidence import compute_confidence
@@ -88,14 +89,28 @@ async def ask(
     )
 
 
+def _document_generic_name(title: str) -> str:
+    return re.sub(r"\s+Interactions$", "", title, flags=re.IGNORECASE).strip().lower()
+
+
 def _retrieve_and_rerank(
-    db: Session, settings: Settings, retriever: HybridRetriever, queries: list[str]
+    db: Session, settings: Settings, retriever: HybridRetriever, queries: list[str], original_query: str
 ) -> tuple[list[RerankedChunk], list[FusedCandidate]]:
     """Retrieval + reranking for one or more query variants. Both stages see the same
     variant list: retrieval casts as wide a net as the variants allow, and reranking
     scores each candidate against every variant and keeps its best score — a paraphrase
     that widens retrieval but never reaches reranking wouldn't help, since a passage
     that's genuinely relevant only needs to score well under ONE phrasing to prove it.
+
+    After scoring, candidates belonging to a drug the query actually named (directly or
+    via alias) are moved ahead of candidates that don't, without changing anyone's raw
+    score. This exists because the cross-encoder alone isn't alias-aware: asked "does
+    paracetamol interact with warfarin", it once ranked Azithromycin's own "7.2
+    Warfarin" section above Acetaminophen's actual paracetamol+warfarin passage, purely
+    because "Warfarin" is a prominent literal header match there — even though
+    Azithromycin was never the drug in question. A drug's own document is the
+    authoritative source for its side of an interaction; a passing mention of it inside
+    an unrelated drug's label isn't.
     """
     fused = retriever.retrieve_multi(queries, settings.top_k_candidates, settings.top_k_candidates)
     if not fused:
@@ -112,7 +127,14 @@ def _retrieve_and_rerank(
         for chunk, title in chunk_rows
     }
     candidates = [chunk_lookup[c.chunk_id] for c in fused if c.chunk_id in chunk_lookup]
-    reranked = rerank_multi(queries, candidates, settings.top_k_reranked)
+
+    # Score every candidate before truncating, so the on-topic-drug boost below can
+    # promote a genuinely relevant passage the cross-encoder alone ranked outside the
+    # normal top-k, not just reorder within whatever it already put there.
+    scored = rerank_multi(queries, candidates, len(candidates))
+    relevant_drugs = relevant_drug_names(original_query)
+    scored.sort(key=lambda r: (_document_generic_name(r.document_title) not in relevant_drugs, -r.rerank_score))
+    reranked = scored[: settings.top_k_reranked]
     return reranked, fused
 
 
@@ -124,7 +146,7 @@ async def _run_pipeline(db: Session, settings: Settings, query: str) -> Pipeline
     retrieval_query = expand_query(query)
     retriever = registry.get_retriever()
 
-    reranked, fused = _retrieve_and_rerank(db, settings, retriever, [retrieval_query])
+    reranked, fused = _retrieve_and_rerank(db, settings, retriever, [retrieval_query], query)
     if not fused:
         return PipelineResult(status="refused", refusal_reason=RefusalReason.out_of_scope)
     confidence = compute_confidence(reranked, fused)
@@ -139,7 +161,7 @@ async def _run_pipeline(db: Session, settings: Settings, query: str) -> Pipeline
         variants = await generate_retrieval_variants(query)
         if variants:
             retry_reranked, retry_fused = _retrieve_and_rerank(
-                db, settings, retriever, [retrieval_query, *variants]
+                db, settings, retriever, [retrieval_query, *variants], query
             )
             if retry_fused and retry_reranked:
                 retry_confidence = compute_confidence(retry_reranked, retry_fused)

@@ -1,4 +1,4 @@
-from backend.app.retrieval.query_expansion import expand_query, find_aliases
+from backend.app.retrieval.query_expansion import expand_query, find_aliases, relevant_drug_names
 
 
 def test_brand_name_expands_to_generic():
@@ -58,6 +58,22 @@ def test_fuzzy_matching_does_not_false_positive_on_ordinary_words():
         "What foods should I avoid while taking antibiotics?",
     ]:
         assert find_aliases(query) == {}
+
+
+def test_relevant_drug_names_finds_directly_named_and_alias_resolved_drugs():
+    assert relevant_drug_names("Does paracetamol interact with warfarin?") == {"acetaminophen", "warfarin"}
+    assert relevant_drug_names("Can I take blood thinner with Advil?") == {"warfarin", "clopidogrel", "ibuprofen"}
+
+
+def test_relevant_drug_names_excludes_non_corpus_alias_terms():
+    # "blood thinner" resolves to warfarin, clopidogrel, AND the generic term
+    # "anticoagulant" — the last one isn't an actual corpus document and must be
+    # dropped, not treated as a drug name to boost.
+    assert "anticoagulant" not in relevant_drug_names("Can I take a blood thinner with food?")
+
+
+def test_relevant_drug_names_empty_for_query_naming_no_corpus_drug():
+    assert relevant_drug_names("What is the capital of France?") == set()
 
 
 def test_category_level_alias_expands_to_every_corpus_drug_in_that_class():

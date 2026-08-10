@@ -18,6 +18,25 @@ from backend.app.retrieval.registry import registry
 from backend.app.retrieval.vector_index import VectorIndex
 
 
+def _grounded_chunk_content(content: str, page_number: int, drug_name: str) -> str:
+    """FDA label prose often names the drug once at the top of a section and refers to
+    it only by drug class afterward ("...should not be given with diuretics...") —
+    correct in context, but once that sentence is split into its own chunk (see
+    build_corpus_from_fda.py), the connection to the specific drug is gone. A real
+    case: furosemide's Lithium interaction never says "furosemide" at all, so a
+    cross-encoder scoring it against "does furosemide interact with lithium" ranked
+    it dead last behind four completely unrelated furosemide passages that happened
+    to repeat the drug's name. Prepending the drug name to every chunk's stored
+    content (not just page 1, the attribution header, which doesn't need it) keeps
+    that grounding regardless of how the source prose happens to be worded — this
+    affects retrieval, reranking, and what the LLM prompt sees, since all three read
+    chunk.content directly.
+    """
+    if page_number == 1:
+        return content
+    return f"{drug_name}: {content}"
+
+
 def ingest_document(db: Session, path: Path, source: str, title: str, url: str | None = None) -> Document:
     settings = get_settings()
 
@@ -25,15 +44,18 @@ def ingest_document(db: Session, path: Path, source: str, title: str, url: str |
     db.add(document)
     db.flush()  # assigns document.id without committing
 
+    drug_name = title.removesuffix(" Interactions")
+
     pages = extract_pages(path)
     all_chunks: list[Chunk] = []
     all_texts: list[str] = []
 
     for page_number, page_text in pages:
         for result in chunk_page(page_text, page_number, settings.chunk_token_size, settings.chunk_overlap_ratio):
-            chunk = Chunk(doc_id=document.id, content=result.content, page_number=result.page_number)
+            content = _grounded_chunk_content(result.content, result.page_number, drug_name)
+            chunk = Chunk(doc_id=document.id, content=content, page_number=result.page_number)
             all_chunks.append(chunk)
-            all_texts.append(result.content)
+            all_texts.append(content)
 
     if all_chunks:
         vectors = embed_passages(all_texts)

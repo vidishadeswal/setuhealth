@@ -1,0 +1,67 @@
+===PAGE 1===
+SetuHealth Source Document — FDA-Approved Drug Labeling
+
+Source: openFDA (api.fda.gov), U.S. Food and Drug Administration.
+This text is FDA-approved prescribing information, a work of the U.S. federal
+government and not subject to copyright protection in the United States
+(17 U.S.C. § 105). Retrieved programmatically via the openFDA drug label API.
+
+Generic name: HYDROCHLOROTHIAZIDE
+Brand name(s): Hydrochlorothiazide
+Label set_id: 01ad3531-5ed9-434c-b7d5-02d72aa82e46
+Label effective date: 2023-12-25
+
+This is prescribing information written for healthcare professionals, reproduced
+here to demonstrate a retrieval system — it is not a substitute for a pharmacist
+or prescriber, and this tool remains a PROTOTYPE, not for real clinical decisions.
+
+
+===PAGE 2===
+Drug Interactions — Drug Interactions
+
+Drug Interactions When given concurrently the following drugs may interact with thiazide diuretics.
+
+===PAGE 3===
+Drug Interactions — Alcohol, Barbiturates, or Narcotics
+
+Alcohol, Barbiturates, or Narcotics Potentiation of orthostatic hypotension may occur.
+
+===PAGE 4===
+Drug Interactions — Antidiabetic
+
+Antidiabetic Drugs - (Oral Agents and Insulin) Dosage adjustment of the antidiabetic drug may be required.
+
+===PAGE 5===
+Drug Interactions — Other Antihypertensive Drugs
+
+Other Antihypertensive Drugs Additive effect or potentiation.
+
+===PAGE 6===
+Drug Interactions — Cholestyramine and Colestipol Resins
+
+Cholestyramine and Colestipol Resins Absorption of hydrochlorothiazide is impaired in the presence of anionic exchange resins. Single doses of either cholestyramine or colestipol resins bind the hydrochlorothiazide and reduce its absorption from the gastrointestinal tract by up to 85 and 43 percent, respectively.
+
+===PAGE 7===
+Drug Interactions — Corticosteroids, ACTH
+
+Corticosteroids, ACTH Intensified electrolyte depletion, particularly hypokalemia.
+
+===PAGE 8===
+Drug Interactions — Pressor
+
+Pressor Amines (e.g., Norepinephrine) Possible decreased response to pressor amines but not sufficient to preclude their use.
+
+===PAGE 9===
+Drug Interactions — Skeletal Muscle Relaxants,
+
+Skeletal Muscle Relaxants, Nondepolarizing (e.g., Tubocurarine) Possible increased responsiveness to the muscle relaxant.
+
+===PAGE 10===
+Drug Interactions — Lithium
+
+Lithium Generally should not be given with diuretics. Diuretic agents reduce the renal clearance of lithium and add a high risk of lithium toxicity. Refer to the package insert for lithium preparations before use of such preparations with hydrochlorothiazide.
+
+===PAGE 11===
+Drug Interactions — Non-Steroidal Anti-Inflammatory Drugs
+
+Non-Steroidal Anti-Inflammatory Drugs In some patients, the administration of a non-steroidal anti-inflammatory agent can reduce the diuretic, natriuretic, and antihypertensive effects of loop, potassium-sparing and thiazide diuretics. Therefore, when hydrochlorothiazide and non-steroidal anti-inflammatory agents are used concomitantly, the patient should be observed closely to determine if the desired effect of the diuretic is obtained.

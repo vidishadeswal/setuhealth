@@ -34,6 +34,9 @@ CORPUS_GENERICS = [
     "ibuprofen", "tramadol", "clopidogrel", "digoxin", "methotrexate", "phenytoin", "cyclosporine",
     "metformin", "atorvastatin", "lisinopril", "omeprazole", "levothyroxine", "amoxicillin",
     "azithromycin", "fluoxetine", "amlodipine",
+    "losartan", "hydrochlorothiazide", "prednisone", "gabapentin", "citalopram", "furosemide",
+    "montelukast", "pantoprazole", "alprazolam", "metoprolol", "spironolactone", "allopurinol",
+    "duloxetine", "escitalopram", "tamsulosin",
 ]
 
 # colloquial term or brand name -> canonical generic name(s) as they appear in the corpus.
@@ -62,10 +65,10 @@ DRUG_ALIASES: dict[str, list[str]] = {
     # Methotrexate
     "trexall": ["methotrexate"],
     "otrexup": ["methotrexate"],
-    # Phenytoin
+    # Phenytoin and gabapentin are both anticonvulsants in this corpus now.
     "dilantin": ["phenytoin"],
-    "anticonvulsant": ["phenytoin"],
-    "seizure medicine": ["phenytoin"],
+    "anticonvulsant": ["phenytoin", "gabapentin"],
+    "seizure medicine": ["phenytoin", "gabapentin"],
     # Cyclosporine
     "neoral": ["cyclosporine"],
     "sandimmune": ["cyclosporine"],
@@ -80,19 +83,67 @@ DRUG_ALIASES: dict[str, list[str]] = {
     "sugar medicine": ["metformin"],
     # Atorvastatin
     "lipitor": ["atorvastatin"],
-    # Lisinopril and amlodipine — both treat blood pressure, so a colloquial
-    # "bp medicine" reference is expanded to both rather than guessed.
+    # Lisinopril, amlodipine, losartan, hydrochlorothiazide, and metoprolol all treat
+    # blood pressure, so a colloquial "bp medicine" reference expands to all five
+    # rather than guessing one.
     "prinivil": ["lisinopril"],
     "zestril": ["lisinopril"],
     "ace inhibitor": ["lisinopril"],
-    "blood pressure medicine": ["lisinopril", "amlodipine"],
-    "bp medicine": ["lisinopril", "amlodipine"],
-    "bp tablet": ["lisinopril", "amlodipine"],
-    # Omeprazole
+    "blood pressure medicine": ["lisinopril", "amlodipine", "losartan", "hydrochlorothiazide", "metoprolol"],
+    "bp medicine": ["lisinopril", "amlodipine", "losartan", "hydrochlorothiazide", "metoprolol"],
+    "bp tablet": ["lisinopril", "amlodipine", "losartan", "hydrochlorothiazide", "metoprolol"],
+    # Omeprazole and pantoprazole are both PPIs in this corpus now.
     "prilosec": ["omeprazole"],
     "losec": ["omeprazole"],
-    "acid reducer": ["omeprazole"],
-    "heartburn medicine": ["omeprazole"],
+    "acid reducer": ["omeprazole", "pantoprazole"],
+    "heartburn medicine": ["omeprazole", "pantoprazole"],
+    "ppi": ["omeprazole", "pantoprazole"],
+    # Losartan
+    "cozaar": ["losartan"],
+    "arb": ["losartan"],
+    "angiotensin receptor blocker": ["losartan"],
+    # Hydrochlorothiazide, furosemide, and spironolactone are all diuretics — expand
+    # "water pill" to all three rather than guessing which one.
+    "microzide": ["hydrochlorothiazide"],
+    "hctz": ["hydrochlorothiazide"],
+    "water pill": ["hydrochlorothiazide", "furosemide", "spironolactone"],
+    "diuretic": ["hydrochlorothiazide", "furosemide", "spironolactone"],
+    # Prednisone — only steroid in this corpus, safe to alias unambiguously.
+    "deltasone": ["prednisone"],
+    "rayos": ["prednisone"],
+    "steroid": ["prednisone"],
+    "steroids": ["prednisone"],
+    # Gabapentin
+    "neurontin": ["gabapentin"],
+    "nerve pain medicine": ["gabapentin"],
+    # Citalopram
+    "celexa": ["citalopram"],
+    # Furosemide
+    "lasix": ["furosemide"],
+    # Montelukast
+    "singulair": ["montelukast"],
+    # Pantoprazole
+    "protonix": ["pantoprazole"],
+    # Alprazolam
+    "xanax": ["alprazolam"],
+    "benzodiazepine": ["alprazolam"],
+    "benzo": ["alprazolam"],
+    # Metoprolol
+    "lopressor": ["metoprolol"],
+    "toprol": ["metoprolol"],
+    "beta blocker": ["metoprolol"],
+    # Spironolactone
+    "aldactone": ["spironolactone"],
+    # Allopurinol — only gout drug in this corpus, safe to alias unambiguously.
+    "zyloprim": ["allopurinol"],
+    "gout medicine": ["allopurinol"],
+    # Duloxetine
+    "cymbalta": ["duloxetine"],
+    "snri": ["duloxetine"],
+    # Escitalopram
+    "lexapro": ["escitalopram"],
+    # Tamsulosin
+    "flomax": ["tamsulosin"],
     # Levothyroxine
     "synthroid": ["levothyroxine"],
     "levoxyl": ["levothyroxine"],
@@ -129,14 +180,15 @@ DRUG_ALIASES: dict[str, list[str]] = {
     "monodox": ["doxycycline"],
     # Ciprofloxacin
     "cipro": ["ciprofloxacin"],
-    # Sertraline and fluoxetine are both SSRIs in this corpus now, so an indication-level
-    # reference ("my antidepressant") can no longer be pinned to one — expand to both and
-    # let retrieval/reranking sort out which passage actually matches. Brand names stay
-    # unambiguous since they each name one specific drug.
+    # Sertraline, fluoxetine, citalopram, and escitalopram are all SSRIs in this corpus,
+    # so an indication-level reference ("my antidepressant") can't be pinned to one —
+    # expand to all of them (plus duloxetine, an SNRI, for the broader "antidepressant"
+    # term specifically) and let retrieval/reranking sort out which passage matches.
+    # Brand names stay unambiguous since they each name one specific drug.
     "zoloft": ["sertraline"],
-    "antidepressant": ["sertraline", "fluoxetine"],
-    "my antidepressant": ["sertraline", "fluoxetine"],
-    "ssri": ["sertraline", "fluoxetine"],
+    "antidepressant": ["sertraline", "fluoxetine", "citalopram", "escitalopram", "duloxetine"],
+    "my antidepressant": ["sertraline", "fluoxetine", "citalopram", "escitalopram", "duloxetine"],
+    "ssri": ["sertraline", "fluoxetine", "citalopram", "escitalopram"],
     # Simvastatin and atorvastatin are both statins in this corpus now — same reasoning.
     "zocor": ["simvastatin"],
     "statin": ["simvastatin", "atorvastatin"],
@@ -189,6 +241,15 @@ _WORD_RE = re.compile(r"[a-zA-Z]+")
 _FUZZY_MIN_LENGTH = 5  # shorter words risk too many false-positive "close" matches
 _FUZZY_CUTOFF = 0.82  # difflib similarity ratio; ~1 edit on a 6-8 letter drug name
 
+# Real medical words that happen to sit within one edit of an unrelated bulk-extracted
+# brand name and would otherwise get silently "corrected" to the wrong drug. Found
+# live: "lithium" (a real drug named throughout many interaction passages, e.g.
+# furosemide's and digoxin's own labels) is one edit from "zithium", a generated brand
+# alias for azithromycin — a query naming lithium was silently expanded toward an
+# unrelated antibiotic. Add here, don't just raise the cutoff globally: a stricter
+# cutoff would also block legitimate catches like "warfrin" -> warfarin.
+_FUZZY_PROTECTED_WORDS = {"lithium", "thyroid"}
+
 
 def _fuzzy_matches(query: str, already_matched: set[str]) -> dict[str, list[str]]:
     """Catches simple misspellings of drug names ("warfrin" -> warfarin) that exact
@@ -200,7 +261,12 @@ def _fuzzy_matches(query: str, already_matched: set[str]) -> dict[str, list[str]
     corrections: dict[str, list[str]] = {}
     for word in _WORD_RE.findall(query):
         lower = word.lower()
-        if len(lower) < _FUZZY_MIN_LENGTH or lower in already_matched or lower in _FUZZY_TARGETS:
+        if (
+            len(lower) < _FUZZY_MIN_LENGTH
+            or lower in already_matched
+            or lower in _FUZZY_TARGETS
+            or lower in _FUZZY_PROTECTED_WORDS
+        ):
             continue
         close = difflib.get_close_matches(lower, _FUZZY_TARGETS, n=1, cutoff=_FUZZY_CUTOFF)
         if close:

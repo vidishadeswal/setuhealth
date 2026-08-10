@@ -1,0 +1,37 @@
+===PAGE 1===
+SetuHealth Source Document — FDA-Approved Drug Labeling
+
+Source: openFDA (api.fda.gov), U.S. Food and Drug Administration.
+This text is FDA-approved prescribing information, a work of the U.S. federal
+government and not subject to copyright protection in the United States
+(17 U.S.C. § 105). Retrieved programmatically via the openFDA drug label API.
+
+Generic name: LOSARTAN
+Brand name(s): Losartan Potassium
+Label set_id: 9501dfaa-c8cf-46d6-8bec-936c4fd8fe03
+Label effective date: 2026-07-16
+
+This is prescribing information written for healthcare professionals, reproduced
+here to demonstrate a retrieval system — it is not a substitute for a pharmacist
+or prescriber, and this tool remains a PROTOTYPE, not for real clinical decisions.
+
+
+===PAGE 2===
+Section 7.1 — Drug Interactions
+
+7.1 Agents Increasing Serum Potassium Coadministration of losartan with other drugs that raise serum potassium levels may result in hyperkalemia. Monitor serum potassium in such patients.
+
+===PAGE 3===
+Section 7.2 — Drug Interactions
+
+7.2 Lithium Increases in serum lithium concentrations and lithium toxicity have been reported during concomitant administration of lithium with angiotensin II receptor antagonists. Monitor serum lithium levels during concomitant use.
+
+===PAGE 4===
+Section 7.3 — Drug Interactions
+
+7.3 Non-Steroidal Anti-inflammatory Drugs (NSAIDS) Including Selective Cyclooxygenase-2 Inhibitors (COX-2 Inhibitors) In patients who are elderly, volume-depleted (including those on diuretic therapy), or with compromised renal function, coadministration of NSAIDs, including selective COX-2 inhibitors, with angiotensin II receptor antagonists (including losartan) may result in deterioration of renal function, including possible acute renal failure. These effects are usually reversible. Monitor renal function periodically in patients receiving losartan and NSAID therapy. The antihypertensive effect of angiotensin II receptor antagonists, including losartan, may be attenuated by NSAIDs, including selective COX-2 inhibitors.
+
+===PAGE 5===
+Section 7.4 — Drug Interactions
+
+7.4 Dual Blockade of the Renin-Angiotensin System (RAS) Dual blockade of the RAS with angiotensin receptor blockers, ACE inhibitors, or aliskiren is associated with increased risks of hypotension, syncope, hyperkalemia, and changes in renal function (including acute renal failure) compared to monotherapy. The Veterans Affairs Nephropathy in Diabetes (VA NEPHRON-D) trial enrolled 1448 patients with type 2 diabetes, elevated urinary-albumin-to-creatinine ratio, and decreased estimated glomerular filtration rate (GFR 30 to 89.9 mL/min), randomized them to lisinopril or placebo on a background of losartan therapy and followed them for a median of 2.2 years. Patients receiving the combination of losartan and lisinopril did not obtain any additional benefit compared to monotherapy for the combined endpoint of decline in GFR, end stage renal disease, or death, but experienced an increased incidence of hyperkalemia and acute kidney injury compared with the monotherapy group. In most patients no benefit has been associated with using two RAS inhibitors concomitantly. In general, avoid combined use of RAS inhibitors. Closely monitor blood pressure, renal function, and electrolytes in patients on losartan potassium tablets and other agents that affect the RAS. Do not coadminister aliskiren with losartan potassium tablets in patients with diabetes. Avoid use of aliskiren with losartan potassium tablets in patients with renal impairment (GFR <60 mL/min).

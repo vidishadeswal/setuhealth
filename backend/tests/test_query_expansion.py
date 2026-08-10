@@ -46,6 +46,15 @@ def test_typo_of_generic_name_is_fuzzy_corrected():
     assert "warfarin" in aliases["warfrin"]
 
 
+def test_protected_word_is_not_fuzzy_corrected_to_an_unrelated_drug():
+    # Regression test: "lithium" is one edit from "zithium", a generated brand alias
+    # for azithromycin — live testing showed "Can I take Lasix with lithium?" silently
+    # expanding toward an unrelated antibiotic instead of staying about lithium, an
+    # interaction actually documented in several corpus drugs' own labels.
+    assert "lithium" not in find_aliases("Can I take Lasix with lithium?")
+    assert "azithromycin" not in expand_query("Can I take Lasix with lithium?").lower()
+
+
 def test_typo_of_brand_alias_is_fuzzy_corrected():
     aliases = find_aliases("is simvotan safe with grapefruit juice")
     assert "simvastatin" in aliases.get("simvotan", [])

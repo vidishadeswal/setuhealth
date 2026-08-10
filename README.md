@@ -4,7 +4,7 @@
 > This is an engineering prototype demonstrating a trustworthy retrieval architecture. Its corpus (see
 > [`corpus/sample/`](corpus/sample/)) is real FDA-approved drug labeling, pulled from the
 > [openFDA](https://open.fda.gov/) API — a U.S. government work, not subject to copyright
-> (17 U.S.C. § 105) — covering six drugs as a demo-scale subset, not a comprehensive or current
+> (17 U.S.C. § 105) — covering 37 drugs as a demo-scale subset, not a comprehensive or current
 > reference. Do not use any answer from this system for an actual medical decision.
 
 SetuHealth is a retrieval system for a professional-assist tool — a pharmacist or health-line agent
@@ -47,7 +47,7 @@ Fully local — no external API keys required:
 - **Reranking**: `cross-encoder/ms-marco-MiniLM-L-6-v2`
 - **Vector search**: FAISS (`IndexFlatIP` over normalized embeddings)
 - **Keyword search**: BM25 (`rank_bm25`)
-- **Query expansion**: a hand-curated alias table merged with ~80 real Indian brand names
+- **Query expansion**: a hand-curated alias table merged with ~500 real Indian brand names
   auto-extracted from a public Kaggle medicine dataset (`scripts/extract_brand_aliases.py`) — used only
   to widen retrieval matching, never as cited content
 - **Query-rewrite fallback**: multi-query paraphrasing + HyDE via the local LLM, triggered only when
@@ -156,8 +156,11 @@ backend/app/
   generation/    Ollama client, context-restricted prompt builder, query-rewrite fallback
   api/           /ask, /sources, /admin/* routes
   models/        SQLAlchemy: User, Document, Chunk, QueryLog
-corpus/sample/   real FDA drug-labeling excerpts (openFDA API), 6 drugs, demo-scale subset
+corpus/sample/   real FDA drug-labeling excerpts (openFDA API), 37 drugs, demo-scale subset
 eval/            retrieval + red-team eval sets, the eval runner, threshold sweep
-scripts/         one-off data-prep scripts (e.g. brand-alias extraction) — not run by the app itself
+scripts/         corpus/data-prep scripts — not run by the app itself:
+                   build_corpus_from_fda.py     openFDA label JSON -> corpus/sample/*.txt
+                   ingest_new_corpus_docs.py    ingest any corpus .txt not already in the DB
+                   extract_brand_aliases.py     regenerate data/brand_aliases.json
 frontend/        React + TypeScript + Vite UI: login, ask, sources, admin
 ```

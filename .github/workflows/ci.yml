@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run unit tests
+        run: python -m pytest backend/tests/ -v
+        # Only the pure-logic unit tests run here (query expansion, chunking, prompt
+        # building, table reconstruction) — none of them touch Ollama or download the
+        # embedding/reranker models, so this stays fast and needs no external services.
+        # eval/run_eval.py and eval/threshold_sweep.py need a running Ollama instance
+        # with llama3.2:3b pulled and are meant to be run locally before a push that
+        # touches retrieval, generation, or corpus content — see README.md.
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Typecheck + build
+        run: npm run build

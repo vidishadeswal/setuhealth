@@ -1,11 +1,17 @@
 {
-  "_count": 335,
+  "_count": 514,
   "_filters": "single-ingredient oral formulations only, matched against the corpus's covered generics",
   "_source": "Kaggle 'Medicine Dataset' (Medicine_Details.csv, 1mg.com listings) \u2014 unverified provenance",
   "_usage": "retrieval-query expansion only \u2014 never used as cited/grounding content",
   "aliases": {
     "a doxid": [
       "doxycycline"
+    ],
+    "aciban": [
+      "pantoprazole"
+    ],
+    "actiblok ipr": [
+      "metoprolol"
     ],
     "admol junior": [
       "acetaminophen"
@@ -19,11 +25,17 @@
     "alciflox": [
       "ciprofloxacin"
     ],
+    "aldactone": [
+      "spironolactone"
+    ],
     "algina": [
       "acetaminophen"
     ],
     "almox": [
       "amoxicillin"
+    ],
+    "alsartan": [
+      "losartan"
     ],
     "amcard": [
       "amlodipine"
@@ -63,6 +75,12 @@
     ],
     "angicam": [
       "amlodipine"
+    ],
+    "angizaar": [
+      "losartan"
+    ],
+    "aquazide": [
+      "hydrochlorothiazide"
     ],
     "arpimune me": [
       "cyclosporine"
@@ -220,6 +238,18 @@
     "babygesic": [
       "acetaminophen"
     ],
+    "baga": [
+      "gabapentin"
+    ],
+    "betabest xl": [
+      "metoprolol"
+    ],
+    "betaloc": [
+      "metoprolol"
+    ],
+    "betaone-xl": [
+      "metoprolol"
+    ],
     "beteala": [
       "fluoxetine"
     ],
@@ -244,8 +274,19 @@
     "daxid": [
       "sertraline"
     ],
+    "delok": [
+      "duloxetine"
+    ],
     "denim p": [
       "acetaminophen"
+    ],
+    "depranex": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "desilam": [
+      "citalopram",
+      "escitalopram"
     ],
     "diamet": [
       "metformin"
@@ -262,6 +303,21 @@
     "dolodart 120mg": [
       "acetaminophen"
     ],
+    "dulane": [
+      "duloxetine"
+    ],
+    "duloren": [
+      "duloxetine"
+    ],
+    "dulotin": [
+      "duloxetine"
+    ],
+    "duopep": [
+      "pantoprazole"
+    ],
+    "duvanta": [
+      "duloxetine"
+    ],
     "dysliptin": [
       "atorvastatin"
     ],
@@ -277,6 +333,12 @@
     "eltroxin": [
       "levothyroxine"
     ],
+    "embeta": [
+      "metoprolol"
+    ],
+    "embeta xr": [
+      "metoprolol"
+    ],
     "epsolin": [
       "phenytoin"
     ],
@@ -291,6 +353,30 @@
     ],
     "esam": [
       "amlodipine"
+    ],
+    "escigress": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "escipra": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "escitalent": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "escnx": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "esipram": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "esitamat": [
+      "citalopram",
+      "escitalopram"
     ],
     "eslo": [
       "amlodipine"
@@ -322,6 +408,14 @@
     "espra": [
       "omeprazole"
     ],
+    "essita": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "esta": [
+      "citalopram",
+      "escitalopram"
+    ],
     "esys": [
       "omeprazole"
     ],
@@ -331,17 +425,28 @@
     "euthyrox": [
       "levothyroxine"
     ],
+    "evimeto": [
+      "metoprolol"
+    ],
     "exermet": [
       "metformin"
     ],
     "exermet 500 sr": [
       "metformin"
     ],
+    "ezeepam": [
+      "citalopram",
+      "escitalopram"
+    ],
     "febrex": [
       "acetaminophen"
     ],
     "febrinil": [
       "acetaminophen"
+    ],
+    "feliz-s": [
+      "citalopram",
+      "escitalopram"
     ],
     "fevago": [
       "acetaminophen"
@@ -351,6 +456,10 @@
     ],
     "fever-x": [
       "acetaminophen"
+    ],
+    "firsito": [
+      "citalopram",
+      "escitalopram"
     ],
     "flame": [
       "fluoxetine"
@@ -382,6 +491,37 @@
     "formin-sr": [
       "metformin"
     ],
+    "frusenex": [
+      "furosemide"
+    ],
+    "gaba": [
+      "gabapentin"
+    ],
+    "gabadon": [
+      "gabapentin"
+    ],
+    "gabagesic": [
+      "gabapentin"
+    ],
+    "gabalent": [
+      "gabapentin"
+    ],
+    "gabantin": [
+      "gabapentin"
+    ],
+    "gabapin": [
+      "gabapentin"
+    ],
+    "gabapin sr": [
+      "gabapentin"
+    ],
+    "gabator": [
+      "gabapentin"
+    ],
+    "galop": [
+      "citalopram",
+      "escitalopram"
+    ],
     "gempar 1k": [
       "acetaminophen"
     ],
@@ -390,6 +530,15 @@
     ],
     "genxvast": [
       "atorvastatin"
+    ],
+    "geristart": [
+      "tamsulosin"
+    ],
+    "geritam": [
+      "tamsulosin"
+    ],
+    "giftan": [
+      "losartan"
     ],
     "glenpar": [
       "acetaminophen"
@@ -418,11 +567,17 @@
     "glycomet 850 sr": [
       "metformin"
     ],
+    "gudpres-xl": [
+      "metoprolol"
+    ],
     "hhazi": [
       "azithromycin"
     ],
     "hmet-forte": [
       "metformin"
+    ],
+    "hydrazide": [
+      "hydrochlorothiazide"
     ],
     "ibithral": [
       "azithromycin"
@@ -430,17 +585,26 @@
     "iminoral": [
       "cyclosporine"
     ],
+    "inhipraz": [
+      "pantoprazole"
+    ],
     "inosert": [
       "sertraline"
     ],
     "ismet": [
       "metformin"
     ],
+    "januric sr": [
+      "allopurinol"
+    ],
     "k-met": [
       "metformin"
     ],
     "kelvin": [
       "acetaminophen"
+    ],
+    "kimet xl": [
+      "metoprolol"
     ],
     "labmox": [
       "amoxicillin"
@@ -451,11 +615,24 @@
     "lanoxin": [
       "digoxin"
     ],
+    "laregab": [
+      "gabapentin"
+    ],
+    "lasix": [
+      "furosemide"
+    ],
+    "lasma": [
+      "montelukast"
+    ],
     "laz": [
       "azithromycin"
     ],
     "lethyrox": [
       "levothyroxine"
+    ],
+    "lexadep": [
+      "citalopram",
+      "escitalopram"
     ],
     "lipicure": [
       "atorvastatin"
@@ -475,8 +652,38 @@
     "listril": [
       "lisinopril"
     ],
+    "losacar": [
+      "losartan"
+    ],
+    "losakind": [
+      "losartan"
+    ],
+    "losanorm": [
+      "losartan"
+    ],
+    "losar": [
+      "losartan"
+    ],
+    "losartas": [
+      "losartan"
+    ],
+    "losatan": [
+      "losartan"
+    ],
+    "losium": [
+      "losartan"
+    ],
+    "lostat": [
+      "losartan"
+    ],
+    "ltk": [
+      "losartan"
+    ],
     "lucipro": [
       "ciprofloxacin"
+    ],
+    "lukotas": [
+      "montelukast"
     ],
     "lupidip": [
       "amlodipine"
@@ -529,6 +736,9 @@
     "merimol": [
       "acetaminophen"
     ],
+    "met xl": [
+      "metoprolol"
+    ],
     "metaday": [
       "metformin"
     ],
@@ -538,11 +748,26 @@
     "metafort": [
       "metformin"
     ],
+    "metapro": [
+      "metoprolol"
+    ],
+    "metapro -xl": [
+      "metoprolol"
+    ],
+    "metapro-xl": [
+      "metoprolol"
+    ],
     "metasens": [
       "metformin"
     ],
     "metatime 1000 xr": [
       "metformin"
+    ],
+    "metcy": [
+      "metoprolol"
+    ],
+    "metfirst xl": [
+      "metoprolol"
     ],
     "metgem": [
       "metformin"
@@ -559,11 +784,62 @@
     "metmin": [
       "metformin"
     ],
+    "metocard xl": [
+      "metoprolol"
+    ],
+    "metoder": [
+      "metoprolol"
+    ],
     "metofix-xl": [
       "metformin"
     ],
+    "metol xl": [
+      "metoprolol"
+    ],
+    "metolar": [
+      "metoprolol"
+    ],
+    "metolar xr": [
+      "metoprolol"
+    ],
+    "metomac": [
+      "metoprolol"
+    ],
+    "metonce": [
+      "metoprolol"
+    ],
+    "metopole 25 xl": [
+      "metoprolol"
+    ],
+    "metosan xr": [
+      "metoprolol"
+    ],
+    "metozaar xl": [
+      "metoprolol"
+    ],
+    "metozox": [
+      "metoprolol"
+    ],
+    "metpure -xl": [
+      "metoprolol"
+    ],
+    "metromax-xl": [
+      "metoprolol"
+    ],
     "metsmall": [
       "metformin"
+    ],
+    "metspot xl": [
+      "metoprolol"
+    ],
+    "metwell": [
+      "metoprolol"
+    ],
+    "metwon xr": [
+      "metoprolol"
+    ],
+    "metzok": [
+      "metoprolol"
     ],
     "mexate": [
       "methotrexate"
@@ -577,6 +853,30 @@
     "modlip": [
       "atorvastatin"
     ],
+    "montair": [
+      "montelukast"
+    ],
+    "montair 4mg chewable": [
+      "montelukast"
+    ],
+    "montair 5mg chewable": [
+      "montelukast"
+    ],
+    "montek": [
+      "montelukast"
+    ],
+    "montek 5 chewable": [
+      "montelukast"
+    ],
+    "montemac": [
+      "montelukast"
+    ],
+    "montina": [
+      "montelukast"
+    ],
+    "montu": [
+      "montelukast"
+    ],
     "mox": [
       "amoxicillin"
     ],
@@ -589,11 +889,20 @@
     "moxikem": [
       "amoxicillin"
     ],
+    "mprol": [
+      "metoprolol"
+    ],
     "mr met": [
       "metformin"
     ],
+    "mymeto xl": [
+      "metoprolol"
+    ],
     "myodura": [
       "amlodipine"
+    ],
+    "myoprol xl": [
+      "metoprolol"
     ],
     "neksium": [
       "omeprazole"
@@ -606,6 +915,18 @@
     ],
     "neomol 80 anal suppository": [
       "acetaminophen"
+    ],
+    "newcita": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "nexipra": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "nexito": [
+      "citalopram",
+      "escitalopram"
     ],
     "nexomep": [
       "omeprazole"
@@ -658,6 +979,9 @@
     "odepraz": [
       "omeprazole"
     ],
+    "odimont": [
+      "montelukast"
+    ],
     "okamet": [
       "metformin"
     ],
@@ -685,6 +1009,9 @@
     "omez insta sachet mint": [
       "omeprazole"
     ],
+    "omnitan": [
+      "losartan"
+    ],
     "oncotrex": [
       "methotrexate"
     ],
@@ -694,14 +1021,26 @@
     "optimol": [
       "acetaminophen"
     ],
+    "oropraz": [
+      "pantoprazole"
+    ],
     "orvas": [
       "atorvastatin"
+    ],
+    "ozolol": [
+      "metoprolol"
     ],
     "ozovas": [
       "atorvastatin"
     ],
     "p": [
       "acetaminophen"
+    ],
+    "p zole": [
+      "pantoprazole"
+    ],
+    "p2i": [
+      "pantoprazole"
     ],
     "pa": [
       "acetaminophen"
@@ -715,8 +1054,59 @@
     "pacimol xp": [
       "acetaminophen"
     ],
+    "pan": [
+      "pantoprazole"
+    ],
+    "panbloc": [
+      "pantoprazole"
+    ],
     "panimun bioral": [
       "cyclosporine"
+    ],
+    "panopaz": [
+      "pantoprazole"
+    ],
+    "panplus": [
+      "pantoprazole"
+    ],
+    "panpure": [
+      "pantoprazole"
+    ],
+    "pansec": [
+      "pantoprazole"
+    ],
+    "pansped": [
+      "pantoprazole"
+    ],
+    "pantafol": [
+      "pantoprazole"
+    ],
+    "pantakind": [
+      "pantoprazole"
+    ],
+    "pantin": [
+      "pantoprazole"
+    ],
+    "pantium": [
+      "pantoprazole"
+    ],
+    "pantocid": [
+      "pantoprazole"
+    ],
+    "pantodac": [
+      "pantoprazole"
+    ],
+    "pantop": [
+      "pantoprazole"
+    ],
+    "pantosec": [
+      "pantoprazole"
+    ],
+    "pantovil": [
+      "pantoprazole"
+    ],
+    "panum": [
+      "pantoprazole"
     ],
     "paraband": [
       "acetaminophen"
@@ -739,8 +1129,20 @@
     "parvis": [
       "acetaminophen"
     ],
+    "pazom": [
+      "pantoprazole"
+    ],
     "pcm": [
       "acetaminophen"
+    ],
+    "pentalink": [
+      "pantoprazole"
+    ],
+    "pentanerv": [
+      "gabapentin"
+    ],
+    "pentate": [
+      "pantoprazole"
     ],
     "plagerine": [
       "clopidogrel"
@@ -750,6 +1152,9 @@
     ],
     "plavix": [
       "clopidogrel"
+    ],
+    "ppson": [
+      "pantoprazole"
     ],
     "pratham 100 rediuse": [
       "azithromycin"
@@ -762,6 +1167,21 @@
     ],
     "prodep": [
       "fluoxetine"
+    ],
+    "progaba": [
+      "gabapentin"
+    ],
+    "prolomet xl": [
+      "metoprolol"
+    ],
+    "protera": [
+      "pantoprazole"
+    ],
+    "protol  -xl": [
+      "metoprolol"
+    ],
+    "protol-xl": [
+      "metoprolol"
     ],
     "psorid": [
       "cyclosporine"
@@ -778,17 +1198,42 @@
     "pyrigesic": [
       "acetaminophen"
     ],
+    "questa": [
+      "citalopram",
+      "escitalopram"
+    ],
     "raciper": [
       "omeprazole"
+    ],
+    "recita": [
+      "citalopram",
+      "escitalopram"
     ],
     "remetor": [
       "atorvastatin"
     ],
+    "repace": [
+      "losartan"
+    ],
     "restasis ophthalmic emulsion (0.4ml each)": [
       "cyclosporine"
     ],
+    "revas": [
+      "losartan"
+    ],
+    "rexipra": [
+      "citalopram",
+      "escitalopram"
+    ],
     "riomet od": [
       "metformin"
+    ],
+    "romilast": [
+      "montelukast"
+    ],
+    "s citadep": [
+      "citalopram",
+      "escitalopram"
     ],
     "s r t": [
       "sertraline"
@@ -805,6 +1250,10 @@
     "s-amopress": [
       "amlodipine"
     ],
+    "s-celepra": [
+      "citalopram",
+      "escitalopram"
+    ],
     "s-numlo": [
       "amlodipine"
     ],
@@ -813,6 +1262,9 @@
     ],
     "scodia sr": [
       "metformin"
+    ],
+    "seloken xl": [
+      "metoprolol"
     ],
     "serlift": [
       "sertraline"
@@ -847,14 +1299,27 @@
     "simvotin": [
       "simvastatin"
     ],
+    "singulair 4mg chewable": [
+      "montelukast"
+    ],
     "sompraz": [
       "omeprazole"
     ],
     "sprintas": [
       "cyclosporine"
     ],
+    "stalopam": [
+      "citalopram",
+      "escitalopram"
+    ],
     "stamlo": [
       "amlodipine"
+    ],
+    "starcad-beta": [
+      "metoprolol"
+    ],
+    "starpress xl": [
+      "metoprolol"
     ],
     "statix": [
       "atorvastatin"
@@ -871,17 +1336,64 @@
     "sumo l ds": [
       "acetaminophen"
     ],
+    "supermet xl": [
+      "metoprolol"
+    ],
     "suppol baby 80mg suppository": [
       "acetaminophen"
     ],
     "suppol child 170mg suppository": [
       "acetaminophen"
     ],
+    "sustameto": [
+      "metoprolol"
+    ],
+    "symbal": [
+      "duloxetine"
+    ],
+    "sympta": [
+      "duloxetine"
+    ],
+    "szetalo": [
+      "citalopram",
+      "escitalopram"
+    ],
     "t-98 ds": [
       "acetaminophen"
     ],
     "t-98 paediatric": [
       "acetaminophen"
+    ],
+    "taloprex": [
+      "citalopram",
+      "escitalopram"
+    ],
+    "tamcontin": [
+      "tamsulosin"
+    ],
+    "tamgress": [
+      "tamsulosin"
+    ],
+    "tamlocept": [
+      "tamsulosin"
+    ],
+    "tampil": [
+      "tamsulosin"
+    ],
+    "tamsin": [
+      "tamsulosin"
+    ],
+    "tasulin": [
+      "tamsulosin"
+    ],
+    "telekast": [
+      "montelukast"
+    ],
+    "telekast 4 chewable": [
+      "montelukast"
+    ],
+    "telekast 5 chewable": [
+      "montelukast"
     ],
     "tg-tor": [
       "atorvastatin"
@@ -898,11 +1410,23 @@
     "thyrox": [
       "levothyroxine"
     ],
+    "tolol -xr": [
+      "metoprolol"
+    ],
     "tonact": [
       "atorvastatin"
     ],
+    "topp": [
+      "pantoprazole"
+    ],
     "torvason": [
       "atorvastatin"
+    ],
+    "tozaar": [
+      "losartan"
+    ],
+    "translol -xl": [
+      "metoprolol"
     ],
     "trifect": [
       "acetaminophen"
@@ -910,8 +1434,32 @@
     "trulimax": [
       "azithromycin"
     ],
+    "ulpan": [
+      "pantoprazole"
+    ],
+    "urimax": [
+      "tamsulosin"
+    ],
+    "uripro": [
+      "tamsulosin"
+    ],
+    "urisurge": [
+      "tamsulosin"
+    ],
+    "uritin": [
+      "tamsulosin"
+    ],
     "uthral": [
       "azithromycin"
+    ],
+    "velol": [
+      "metoprolol"
+    ],
+    "veltam": [
+      "tamsulosin"
+    ],
+    "vinicor xl": [
+      "metoprolol"
     ],
     "walaphage": [
       "metformin"
@@ -957,6 +1505,12 @@
     ],
     "zeethrom": [
       "azithromycin"
+    ],
+    "zilos": [
+      "losartan"
+    ],
+    "zipant": [
+      "pantoprazole"
     ],
     "zithium": [
       "azithromycin"
@@ -1008,6 +1562,15 @@
     ],
     "zoxan": [
       "ciprofloxacin"
+    ],
+    "zyle": [
+      "allopurinol"
+    ],
+    "zyloric": [
+      "allopurinol"
+    ],
+    "zyrik": [
+      "allopurinol"
     ]
   }
 }

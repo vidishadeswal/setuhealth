@@ -1,0 +1,22 @@
+===PAGE 1===
+SetuHealth Source Document — FDA-Approved Drug Labeling
+
+Source: openFDA (api.fda.gov), U.S. Food and Drug Administration.
+This text is FDA-approved prescribing information, a work of the U.S. federal
+government and not subject to copyright protection in the United States
+(17 U.S.C. § 105). Retrieved programmatically via the openFDA drug label API.
+
+Generic name: MONTELUKAST
+Brand name(s): Montelukast
+Label set_id: 365e1c5c-01b2-bf4e-e063-6394a90a0e43
+Label effective date: 2025-05-30
+
+This is prescribing information written for healthcare professionals, reproduced
+here to demonstrate a retrieval system — it is not a substitute for a pharmacist
+or prescriber, and this tool remains a PROTOTYPE, not for real clinical decisions.
+
+
+===PAGE 2===
+Drug Interactions
+
+No dose adjustment is needed when montelukast sodium is co-administered with theophylline, prednisone, prednisolone, oral contraceptives, fexofenadine, digoxin, warfarin, gemfibrozil, itraconazole, thyroid hormones, sedative hypnotics, non-steroidal anti-inflammatory agents, benzodiazepines, decongestants, and Cytochrome P450 (CYP) enzyme inducers [see Clinical Pharmacology ( 12.3 )].

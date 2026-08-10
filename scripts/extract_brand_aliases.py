@@ -50,8 +50,24 @@ CORPUS_GENERICS = {
     "azithromycin": "azithromycin",
     "fluoxetine": "fluoxetine",
     "amlodipine": "amlodipine",
-    # No Kaggle matches found for tramadol under any spelling checked — covered by the
-    # hand-curated brand aliases in query_expansion.py (DRUG_ALIASES) instead.
+    "losartan": "losartan",
+    "hydrochlorothiazide": "hydrochlorothiazide",
+    "gabapentin": "gabapentin",
+    "citalopram": "citalopram",
+    "furosemide": "furosemide",
+    "montelukast": "montelukast",
+    "pantoprazole": "pantoprazole",
+    "metoprolol": "metoprolol",
+    "spironolactone": "spironolactone",
+    "allopurinol": "allopurinol",
+    "duloxetine": "duloxetine",
+    "escitalopram": "escitalopram",
+    "tamsulosin": "tamsulosin",
+    # No Kaggle matches found for tramadol, prednisone, or alprazolam under any spelling
+    # checked — covered by the hand-curated brand aliases in query_expansion.py
+    # (DRUG_ALIASES) instead. Note: the dataset's "prednisolone" entries are a
+    # different, related-but-distinct corticosteroid, not an alternate spelling of
+    # prednisone — not aliased here to avoid conflating the two drugs.
 }
 
 NON_ORAL_RE = re.compile(r"\b(eye|ear|ointment|injection|infusion|drops?|cream|gel|lotion|inhaler|nasal|topical)\b", re.IGNORECASE)

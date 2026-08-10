@@ -1,0 +1,52 @@
+===PAGE 1===
+SetuHealth Source Document — FDA-Approved Drug Labeling
+
+Source: openFDA (api.fda.gov), U.S. Food and Drug Administration.
+This text is FDA-approved prescribing information, a work of the U.S. federal
+government and not subject to copyright protection in the United States
+(17 U.S.C. § 105). Retrieved programmatically via the openFDA drug label API.
+
+Generic name: SPIRONOLACTONE
+Brand name(s): Spironolactone
+Label set_id: 08738ad4-1607-4d55-af71-6790477353bd
+Label effective date: 2025-11-19
+
+This is prescribing information written for healthcare professionals, reproduced
+here to demonstrate a retrieval system — it is not a substitute for a pharmacist
+or prescriber, and this tool remains a PROTOTYPE, not for real clinical decisions.
+
+
+===PAGE 2===
+Section 7.1 — Drug Interactions
+
+7.1 Drugs and Supplements Increasing Serum Potassium Concomitant administration of spironolactone with potassium supplementation or drugs that can increase potassium may lead to severe hyperkalemia. In general, discontinue potassium supplementation in heart failure patients who start spironolactone [see Warnings and Precautions (5.1) and Clinical Pharmacology (12.3) ] . Check serum potassium levels when ACE inhibitor or ARB therapy is altered in patients receiving spironolactone. Examples of drugs that can increase potassium include: ACE inhibitors angiotensin receptor blockers non-steroidal anti-inflammatory drugs (NSAIDs) heparin and low molecular weight heparin trimethoprim
+
+===PAGE 3===
+Section 7.2 — Drug Interactions
+
+7.2 Lithium Like other diuretics, spironolactone reduces the renal clearance of lithium, thus increasing the risk of lithium toxicity. Monitor lithium levels periodically when spironolactone is coadministered [see Clinical Pharmacology (12.3) ] .
+
+===PAGE 4===
+Section 7.3 — Drug Interactions
+
+7.3 Nonsteroidal Anti-Inflammatory Drugs (NSAIDs) In some patients, the administration of an NSAID can reduce the diuretic, natriuretic, and antihypertensive effect of diuretics. Therefore, when spironolactone and NSAIDs are used concomitantly, monitor closely to determine if the desired effect of the diuretic is obtained [see Clinical Pharmacology (12.3) ] .
+
+===PAGE 5===
+Section 7.4 — Drug Interactions
+
+7.4 Digoxin Spironolactone and its metabolites interfere with radioimmunoassays for digoxin and increase the apparent exposure to digoxin. It is unknown to what extent, if any, spironolactone may increase actual digoxin exposure. In patients taking concomitant digoxin, use an assay that does not interact with spironolactone.
+
+===PAGE 6===
+Section 7.5 — Drug Interactions
+
+7.5 Cholestyramine Hyperkalemic metabolic acidosis has been reported in patients given spironolactone concurrently with cholestyramine.
+
+===PAGE 7===
+Section 7.6 — Drug Interactions
+
+7.6 Acetylsalicylic Acid Acetylsalicylic acid may reduce the efficacy of spironolactone. Therefore, when spironolactone and acetylsalicylic acid are used concomitantly, spironolactone may need to be titrated to higher maintenance dose and the patient should be observed closely to determine if the desired effect is obtained [see Clinical Pharmacology (12.3) ] .
+
+===PAGE 8===
+Section 7.7 — Drug Interactions
+
+7.7 Abiraterone Spironolactone binds to the androgen receptor and may increase prostate-specific antigen (PSA) levels in abiraterone-treated prostate cancer patients. Concomitant use of spironolactone and abiraterone is not recommended.

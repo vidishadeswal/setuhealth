@@ -1,0 +1,42 @@
+===PAGE 1===
+SetuHealth Source Document — FDA-Approved Drug Labeling
+
+Source: openFDA (api.fda.gov), U.S. Food and Drug Administration.
+This text is FDA-approved prescribing information, a work of the U.S. federal
+government and not subject to copyright protection in the United States
+(17 U.S.C. § 105). Retrieved programmatically via the openFDA drug label API.
+
+Generic name: GABAPENTIN
+Brand name(s): Gabapentin
+Label set_id: 01b810b7-f4c8-4412-bbc5-b9220d8770d8
+Label effective date: 2024-04-02
+
+This is prescribing information written for healthcare professionals, reproduced
+here to demonstrate a retrieval system — it is not a substitute for a pharmacist
+or prescriber, and this tool remains a PROTOTYPE, not for real clinical decisions.
+
+
+===PAGE 2===
+Section 7.1 — Drug Interactions — Hydrocodone
+
+Hydrocodone Coadministration of gabapentin with hydrocodone decreases hydrocodone exposure [ see Clinical Pharmacology (12.3) ]. The potential for alteration in hydrocodone exposure and effect should be considered when gabapentin is started or discontinued in a patient taking hydrocodone.
+
+===PAGE 3===
+Section 7.1 — Drug Interactions — Morphine
+
+Morphine When gabapentin is administered with morphine, patients should be observed for signs of CNS depression, such as somnolence, sedation and respiratory depression [see Clinical Pharmacology (12.3) ].
+
+===PAGE 4===
+Section 7.2 — Drug Interactions
+
+7.2 Other Antiepileptic Drugs Gabapentin is not appreciably metabolized nor does it interfere with the metabolism of commonly coadministered antiepileptic drugs [ see Clinical Pharmacology (12.3) ] .
+
+===PAGE 5===
+Section 7.3 — Drug Interactions
+
+7.3 Maalox ® (aluminum hydroxide, magnesium hydroxide) The mean bioavailability of gabapentin was reduced by about 20% with concomitant use of an antacid (Maalox ® ) containing magnesium and aluminum hydroxides. It is recommended that gabapentin be taken at least 2 hours following Maalox administration [see Clinical Pharmacology (12.3)] .
+
+===PAGE 6===
+Section 7.4 — Drug Interactions
+
+7.4 Drug/Laboratory Test Interactions Because false positive readings were reported with the Ames N-Multistix SG ® dipstick test for urinary protein when gabapentin was added to other antiepileptic drugs, the more specific sulfosalicylic acid precipitation procedure is recommended to determine the presence of urine protein.

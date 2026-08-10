@@ -39,10 +39,16 @@ BOILERPLATE_LEAD_RE = re.compile(r"^\d+\s+DRUG INTERACTIONS\s*")
 # testing caused the LLM to occasionally answer from the wrong drug class in that blob
 # even though the right one was right there in the same chunk.
 _HEADER_WORD = r"(?:[A-Z(][\w()/\-]*|of|and|the|or)"
-CLINICAL_IMPACT_RE = re.compile(rf"((?:{_HEADER_WORD}\s+){{0,10}}{_HEADER_WORD})\s+Clinical Impact:")
+# Colon after "Clinical Impact" is optional — some labels (e.g. allopurinol) write
+# "Clinical Impact" and "Intervention" as bare bolded-then-stripped words with no
+# punctuation. Matching this format here, not just the colon form, keeps it from
+# falling through to the topic-header fallback below, which would otherwise treat the
+# bare word "Intervention" as its own topic header and split a Clinical
+# Impact/Intervention pair — which belongs on one page — into two.
+CLINICAL_IMPACT_RE = re.compile(rf"((?:{_HEADER_WORD}\s+){{0,10}}{_HEADER_WORD})\s+Clinical Impact:?")
 TABLE_PREAMBLE_RE = re.compile(
     r"^Table \d+:\s*Clinically (?:Significant|Relevant) Drug Interactions? (?:with|Affecting)[^.]*?"
-    r"(?=\b[A-Z][a-zA-Z0-9()/\-]*(?:\s+(?:of|and|the|or)\s+[A-Z(][\w()/\-]*)* Clinical Impact:)"
+    r"(?=\b[A-Z][a-zA-Z0-9()/\-]*(?:\s+(?:of|and|the|or)\s+[A-Z(][\w()/\-]*)* Clinical Impact:?\s)"
 )
 
 
@@ -50,13 +56,51 @@ def _split_on_clinical_impact(title: str, body: str) -> list[tuple[str, str]]:
     cleaned = TABLE_PREAMBLE_RE.sub("", body)
     matches = list(CLINICAL_IMPACT_RE.finditer(cleaned))
     if len(matches) < 2:
-        return [(title, body)]
+        return _split_on_topic_headers(title, body)
 
     pages = []
     for i, m in enumerate(matches):
         start = m.start(1)
         end = matches[i + 1].start(1) if i + 1 < len(matches) else len(cleaned)
         section_body = cleaned[start:end].strip()
+        if section_body:
+            pages.append((f"{title} — {m.group(1).strip()}", section_body))
+    return pages
+
+
+# Third-tier fallback for labels with neither numbered subsections, "Table N:", nor
+# "Clinical Impact:" — some FDA labels instead list one interacting drug/class per
+# short noun-phrase header directly followed by its effect sentence, with no
+# announcing marker at all (e.g. prednisone: "...Antibiotics Macrolide antibiotics
+# have been reported to cause..."). Detected by two title-case word-runs appearing
+# back to back right after a sentence boundary — ordinary prose only ever has one
+# capitalized run per sentence start, so a second one immediately after is a strong
+# signal of [header][new sentence] rather than a single continuing sentence. Not every
+# label has this structure (some, like furosemide's, are genuinely unstructured
+# narrative prose with no per-topic boundaries at all) — those correctly get 0 matches
+# and stay as one page, which chunk_page() still splits reasonably by sentence count.
+_TOPIC_HEADER_WORD = r"(?:[A-Z][\w()/,\-]*|and|or|the|including|with|without|of)"
+TOPIC_HEADER_RE = re.compile(
+    rf"(?:(?<=[.\)])\s+|^)((?:{_TOPIC_HEADER_WORD}\s+){{0,5}}{_TOPIC_HEADER_WORD})\s+(?=[A-Z][a-z])"
+)
+
+
+# Structural words that can look like a topic header (capitalized, sentence-initial)
+# but aren't actually naming an interacting drug or class — matching one here would
+# split a paragraph away from the very topic header it belongs under.
+_NON_TOPIC_HEADERS = {"intervention", "examples", "clinical impact"}
+
+
+def _split_on_topic_headers(title: str, body: str) -> list[tuple[str, str]]:
+    matches = [m for m in TOPIC_HEADER_RE.finditer(body) if m.group(1).strip().lower() not in _NON_TOPIC_HEADERS]
+    if len(matches) < 2:
+        return [(title, body)]
+
+    pages = []
+    for i, m in enumerate(matches):
+        start = m.start(1)
+        end = matches[i + 1].start(1) if i + 1 < len(matches) else len(body)
+        section_body = body[start:end].strip()
         if section_body:
             pages.append((f"{title} — {m.group(1).strip()}", section_body))
     return pages

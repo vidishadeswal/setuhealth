@@ -18,10 +18,19 @@ EMERGENCY_PATTERNS: dict[str, list[str]] = {
     "chest_pain": [
         r"\bchest pain\b", r"\bchest (is |feels? )?(tight|tightness|crushing|heavy)\b",
         r"\bpain (in|across) (my |the |his |her )?chest\b",
+        # Symptom described without the word "pain": "chest just feels weird and tight",
+        # "pressure on my chest", "squeezing in my chest".
+        r"\bchest\b.{0,30}\b(tight|tightness|pressure|crushing|heavy|squeez\w*|weird|funny)\b",
+        r"\b(pressure|squeezing|tightness|weight) (on|in|across) (my |the |his |her )?chest\b",
+        r"\b(sitting|standing|pressing|weighing|resting) (down )?on (my |the |his |her )?chest\b",
     ],
     "breathing_difficulty": [
         r"\b(can'?t|cannot|difficulty|struggling to|trouble) breath",
         r"\bshort(ness)? of breath\b", r"\bgasping for air\b", r"\bthroat (is )?closing\b",
+        # Indirect phrasings: "hard to get air in", "can't get enough air", "breathing is hard".
+        r"\b(hard|difficult|impossible) to (get|catch|take|draw) (any |enough )?(air|a breath|my breath|breath)",
+        r"\b(can'?t|cannot|struggling to|unable to|trouble trying to) (get|catch) (any |enough )?(air|my breath|a breath)\b",
+        r"\bbreathing (is |has (gotten|become) )?(really |very )?(hard|difficult|labou?red)\b",
     ],
     "severe_bleeding": [
         r"\b(severe|heavy|won'?t stop|uncontrolled) bleeding\b", r"\bbleeding (won'?t|does not|doesn'?t) stop\b",

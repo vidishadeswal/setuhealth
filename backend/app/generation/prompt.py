@@ -22,9 +22,14 @@ specific combination. Match the severity word to what the passages actually say 
 to a stronger or more alarming word than the passages use:
 - Say "contraindicated" ONLY if a passage explicitly states the combination should not be used, \
 is contraindicated, or must be avoided entirely.
-- If a passage says to monitor, use caution, or that risk is increased, say exactly that (e.g. \
-"This increases the risk of X" or "Generally safe, but monitor for X") — this is NOT the same as \
-contraindicated, and is the most common case in this corpus.
+- If a passage says "should not be given", "avoid", or "not recommended" without also saying \
+contraindicated, say the combination "should generally be avoided" — that is NOT the same as \
+contraindicated either.
+- If a passage says to monitor, use caution, or that risk is increased, say exactly that: state \
+that the risk is increased and name the specific risk the passage itself names, or say it is \
+generally safe but should be monitored and name what to monitor. This is NOT the same as \
+contraindicated, and is the most common case in this corpus. Never write a placeholder letter \
+such as "X" — always name the real thing from the passage.
 - If nothing in the passages addresses this specific combination, say so plainly: "No interaction \
 between these two is noted in the passages."
 Do not open with a hedge or disclaimer before this sentence — if the passages contain information \

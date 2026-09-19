@@ -82,7 +82,7 @@ Section Table 3 — Drug Interactions — Secretin Stimulation Test
 Secretin Stimulation Test Clinical Impact: Hyper-response in gastrin secretion in response to secretin stimulation test, falsely suggesting gastrinoma. Intervention: Temporarily stop omeprazole treatment at least 14 days before assessing to allow gastrin levels to return to baseline [see Clinical Pharmacology (12.2)]. False Positive Urine Tests f
 
 ===PAGE 15===
-Section Table 3 — Drug Interactions — or THC
+Section Table 3 — Drug Interactions — Urine Drug Screen (THC)
 
 or THC Clinical Impact: There have been reports of false positive urine screening tests for tetrahydrocannabinol (THC) in patients receiving PPIs. Intervention: An alternative confirmatory method should be considered to verify positive results.
 

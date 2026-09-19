@@ -9,6 +9,7 @@ from backend.app.core.deps import require_agent
 from backend.app.core.query_cache import query_cache
 from backend.app.core.rate_limit import enforce_ask_rate_limit
 from backend.app.db.session import get_db
+from backend.app.generation.answer_guard import drop_self_contradiction, enforce_severity_wording
 from backend.app.generation.llm_client import generate
 from backend.app.generation.prompt import build_prompt
 from backend.app.generation.query_rewrite import generate_retrieval_variants, has_lexical_overlap
@@ -189,9 +190,13 @@ async def _run_pipeline(db: Session, settings: Settings, query: str) -> Pipeline
         )
 
     prompt = build_prompt(query, reranked, alias_hints=find_aliases(query))
-    answer_text = await generate(prompt)
+    answer_text = drop_self_contradiction(
+        enforce_severity_wording(await generate(prompt), [r.content for r in reranked])
+    )
 
-    groundedness = check_groundedness(answer_text, [r.content for r in reranked])
+    asked_about = relevant_drug_names(query)
+    preferred = {i for i, r in enumerate(reranked) if _document_generic_name(r.document_title) in asked_about}
+    groundedness = check_groundedness(answer_text, [r.content for r in reranked], preferred_indices=preferred)
     final_answer = " ".join(s.sentence for s in groundedness.grounded_sentences)
 
     if not final_answer.strip():

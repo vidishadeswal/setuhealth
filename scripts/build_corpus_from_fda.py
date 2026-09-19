@@ -26,7 +26,10 @@ from pathlib import Path
 # capitalized word. Bracketed cross-references to the same numbers ("( 7.1 )", "( 7.2 ,
 # 7.3 , 12.3 )") are followed by a comma or closing paren instead, so this lookahead
 # naturally excludes them without needing a lookbehind for the opening paren.
-SECTION_RE = re.compile(r"\d\.\d+(?=\s+[A-Z])")
+# Restricted to section 7 (the FDA "Drug Interactions" section itself): an unrestricted
+# \d.\d+ also matches decimals inside pharmacokinetic text ("3.49 L/kg", "4.3 Age 8..."),
+# which turned one cyclosporine label into nine meaningless one-line "pages".
+SECTION_RE = re.compile(r"(?<![\d.])7\.\d+(?=\s+[A-Z])")
 TABLE_RE = re.compile(r"Table \d+:")
 BOILERPLATE_LEAD_RE = re.compile(r"^\d+\s+DRUG INTERACTIONS\s*")
 
@@ -52,11 +55,15 @@ TABLE_PREAMBLE_RE = re.compile(
 )
 
 
-def _split_on_clinical_impact(title: str, body: str) -> list[tuple[str, str]]:
+def _split_on_clinical_impact(title: str, body: str, allow_topic_fallback: bool = True) -> list[tuple[str, str]]:
     cleaned = TABLE_PREAMBLE_RE.sub("", body)
     matches = list(CLINICAL_IMPACT_RE.finditer(cleaned))
     if len(matches) < 2:
-        return _split_on_topic_headers(title, body)
+        # The loose topic-header guess is only safe on unstructured text. Inside an
+        # already-numbered section it misfires on cross-references ("...and Clinical
+        # Pharmacology (12.3)]. The effects of...") and fragments the section (tamsulosin
+        # 7.1 became eight pages titled "— and Clinical and Clinical Pharmacology").
+        return _split_on_topic_headers(title, body) if allow_topic_fallback else [(title, body)]
 
     pages = []
     for i, m in enumerate(matches):
@@ -138,7 +145,7 @@ def split_pages(text: str) -> list[tuple[str, str]]:
         end = marks[i + 1][0] if i + 1 < len(marks) else len(text)
         body = text[start:end].strip()
         if body:
-            pages.extend(_split_on_clinical_impact(f"Section {label} — Drug Interactions", body))
+            pages.extend(_split_on_clinical_impact(f"Section {label} — Drug Interactions", body, allow_topic_fallback=False))
     return pages
 
 

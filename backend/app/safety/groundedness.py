@@ -61,7 +61,29 @@ class GroundednessResult:
         return self.ungrounded_count == 0
 
 
-def check_groundedness(answer_text: str, source_chunks: list[str]) -> GroundednessResult:
+CITATION_TIE_MARGIN = 0.05
+
+
+def pick_citation_index(
+    similarities: np.ndarray, preferred_indices: set[int] | None, margin: float = CITATION_TIE_MARGIN
+) -> int:
+    """Index of the chunk to credit for a sentence. Normally the most similar chunk. But
+    sibling drugs' labels share near-identical boilerplate (Sertraline and Fluoxetine both
+    list the same serotonin-syndrome drugs), so the top match can be the wrong sibling by
+    a hair; if a chunk from a drug the user actually asked about is within `margin` of the
+    best, credit that one. Only affects WHICH source is credited — whether a sentence is
+    grounded at all is still decided by the raw best similarity, unchanged.
+    """
+    best = int(np.argmax(similarities))
+    if not preferred_indices or best in preferred_indices:
+        return best
+    candidates = [i for i in preferred_indices if similarities[i] >= similarities[best] - margin]
+    return max(candidates, key=lambda i: similarities[i]) if candidates else best
+
+
+def check_groundedness(
+    answer_text: str, source_chunks: list[str], preferred_indices: set[int] | None = None
+) -> GroundednessResult:
     sentences = split_sentences(answer_text)
     if not sentences or not source_chunks:
         return GroundednessResult(
@@ -73,7 +95,7 @@ def check_groundedness(answer_text: str, source_chunks: list[str]) -> Groundedne
 
     # Vectors are normalized, so dot product is cosine similarity.
     similarity_matrix = sentence_vectors @ chunk_vectors.T
-    best_chunk_per_sentence = np.argmax(similarity_matrix, axis=1)
+    best_chunk_per_sentence = [pick_citation_index(row, preferred_indices) for row in similarity_matrix]
     best_similarity_per_sentence = np.max(similarity_matrix, axis=1)
 
     graded = [

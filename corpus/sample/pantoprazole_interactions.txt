@@ -42,6 +42,6 @@ Section Table 4 — Drug Interactions — Investigations of Neuroendocrine Tumor
 Investigations of Neuroendocrine Tumors Clinical Impact: CgA levels increase secondary to PPI-induced decreases in gastric acidity. The increased CgA level may cause false positive results in diagnostic investigations for neuroendocrine tumors [see Warnings and Precautions ( 5.11 ) , Clinical Pharmacology ( 12.2 ) ]. Intervention: Temporarily stop pantoprazole sodium treatment at least 14 days before assessing CgA levels and consider repeating the test if initial CgA levels are high. If serial tests are performed (e.g. for monitoring), the same commercial laboratory should be used for testing, as reference ranges between tests may vary. False Positive Urine Tests f
 
 ===PAGE 7===
-Section Table 4 — Drug Interactions — or THC
+Section Table 4 — Drug Interactions — Urine Drug Screen (THC)
 
 or THC Clinical Impact: There have been reports of false positive urine screening tests for tetrahydrocannabinol (THC) in patients receiving PPIs [see Warnings and Precautions ( 5.12 ) ] . Intervention: An alternative confirmatory method should be considered to verify positive results. See full prescribing information for a list of clinically important drug interactions ( 7 )

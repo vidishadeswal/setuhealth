@@ -164,6 +164,18 @@ DRUG_ALIASES: dict[str, list[str]] = {
     # Amlodipine
     "norvasc": ["amlodipine"],
     "calcium channel blocker": ["amlodipine"],
+    # Class-vocabulary bridges: labels often name the CLASS, not the specific drug a user
+    # types ("oral anticoagulants", "PDE5 inhibitors", "digitalis glycosides"), so a query
+    # naming the drug never lexically meets the passage that answers it. Found by eval:
+    # "levothyroxine + warfarin" missed levothyroxine's "Oral Anticoagulants" section, and
+    # "tamsulosin + sildenafil" missed its "PDE5 Inhibitors" section.
+    "warfarin": ["warfarin", "oral anticoagulants", "coumarin"],
+    "digoxin": ["digoxin", "digitalis glycosides"],
+    "sildenafil": ["PDE5 inhibitors"],
+    "tadalafil": ["PDE5 inhibitors"],
+    "vardenafil": ["PDE5 inhibitors"],
+    "viagra": ["sildenafil", "PDE5 inhibitors"],
+    "cialis": ["tadalafil", "PDE5 inhibitors"],
     # Acetaminophen / paracetamol — both terms are cross-referenced since either may be
     # the query term or the corpus term depending on the user's region.
     "paracetamol": ["acetaminophen"],

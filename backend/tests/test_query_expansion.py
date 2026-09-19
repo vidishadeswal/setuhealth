@@ -95,3 +95,10 @@ def test_category_level_alias_expands_to_every_corpus_drug_in_that_class():
     expanded = expand_query("Is my antidepressant safe with grapefruit?").lower()
     assert "sertraline" in expanded
     assert "fluoxetine" in expanded
+
+
+def test_class_vocabulary_bridges_drug_name_to_the_class_term_labels_use():
+    # Regression (found by eval): tamsulosin's label says "PDE5 inhibitors", never
+    # "sildenafil"; levothyroxine's says "oral anticoagulants", never "warfarin".
+    assert "pde5 inhibitors" in expand_query("Does tamsulosin interact with sildenafil?").lower()
+    assert "oral anticoagulants" in expand_query("Does levothyroxine affect warfarin?").lower()

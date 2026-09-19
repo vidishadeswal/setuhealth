@@ -8,8 +8,8 @@ government and not subject to copyright protection in the United States
 
 Generic name: CYCLOSPORINE
 Brand name(s): CYCLOSPORINE
-Label set_id: 1952d4c7-a40e-4924-b669-c41400774cb9
-Label effective date: 2025-12-04
+Label set_id: a8e29b54-e4ab-4bb9-ab6c-e4414a3f025b
+Label effective date: 2024-05-13
 
 This is prescribing information written for healthcare professionals, reproduced
 here to demonstrate a retrieval system — it is not a substitute for a pharmacist
@@ -17,41 +17,81 @@ or prescriber, and this tool remains a PROTOTYPE, not for real clinical decision
 
 
 ===PAGE 2===
-Section 3.49 — Drug Interactions
+A. Drugs That May Potentiate Renal Dysfunction (additive nephrotoxicity)
 
-3.49 L/kg and systemic clearance (CL) of
+All of the individual drugs cited below are well substantiated to interact with cyclosporine. In addition, concomitant use of nonsteroidal anti-inflammatory drugs (NSAIDs) with cyclosporine, particularly in the setting of dehydration, may potentiate renal dysfunction. Caution should be exercised when using other drugs which are known to impair renal function.
+
+Drugs That May Potentiate Renal Dysfunction
+| Category | Drugs |
+|---|---|
+| Antibiotics | ciprofloxacin, gentamicin, tobramycin, trimethoprim with sulfamethoxazole, vancomycin |
+| Antineoplastic | melphalan |
+| Antifungals | amphotericin B, ketoconazole |
+| Anti-Inflammatory Drugs | azapropazone, colchicine, diclofenac, naproxen, sulindac |
+| Gastrointestinal Agents | cimetidine, ranitidine |
+| Immunosuppressives | tacrolimus |
+| Other Drugs | fibric acid derivatives (e.g., bezafibrate, fenofibrate), methotrexate |
+
+During the concomitant use of a drug that may exhibit additive or synergistic renal impairment potential with cyclosporine, close monitoring of renal function (in particular serum creatinine) should be performed. If a significant impairment of renal function occurs, reduction in the dosage of cyclosporine and/or coadministered drug or an alternative treatment should be considered.
 
 ===PAGE 3===
-Section 0.369 — Drug Interactions
+Drugs and Other Agents That Change Cyclosporine Concentrations (CYP3A4 and P-glycoprotein)
 
-0.369 L/hr/kg. This systemic CL (
+Cyclosporine is extensively metabolized by CYP 3A isoenzymes, in particular CYP3A4, and is a substrate of the multidrug efflux transporter P-glycoprotein. Various agents are known to either increase or decrease plasma or whole blood concentrations of cyclosporine usually by inhibition or induction of CYP3A4 or P-glycoprotein transporter or both. Compounds that decrease cyclosporine absorption such as orlistat should be avoided. Appropriate cyclosporine dosage adjustment to achieve the desired cyclosporine concentrations is essential when drugs that significantly alter cyclosporine concentrations are used concomitantly.
 
 ===PAGE 4===
-Section 0.369 — Drug Interactions
+1. Drugs That Increase Cyclosporine Concentrations
 
-0.369 L/hr/kg) was approximately two thirds of the mean systemic CL (
+Drugs That Increase Cyclosporine Concentrations
+| Category | Drugs |
+|---|---|
+| Calcium Channel Blockers | diltiazem, nicardipine, verapamil |
+| Antifungals | fluconazole, itraconazole, ketoconazole, voriconazole |
+| Antibiotics | azithromycin, clarithromycin, erythromycin, quinupristin/dalfopristin |
+| Glucocorticoids | methylprednisolone |
+| Other Drugs | allopurinol, amiodarone, bromocriptine, colchicine, danazol, imatinib, metoclopramide, nefazodone, oral contraceptives |
 
 ===PAGE 5===
-Section 0.56 — Drug Interactions
+Cyclosporine — HIV Protease Inhibitors and Grapefruit Juice
 
-0.56 L/hr/kg) of cyclosporine in historical control subjects with normal renal function. In 5 liver transplant patients, the mean clearance of cyclosporine on and off hemodialysis was 463 mL/min and 398 mL/min, respectively. Less than 1% of the dose of cyclosporine was recovered in the dialysate. Hepatic Impairment Cyclosporine is extensively metabolized by the liver. Since severe hepatic impairment may result in significantly increased cyclosporine exposures, the dosage of cyclosporine may need to be reduced in these patients. Pediatric Population Pharmacokinetic data from pediatric patients administered cyclosporine capsules (modified) or Sandimmune ® are very limited. In 15 renal transplant patients aged 3 to 16 years, cyclosporine whole blood clearance after IV administration of Sandimmune ® was 10.6 ± 3.7 mL/min/kg (assay: Cyclo-trac specific RIA). In a study of 7 renal transplant patients aged 2 to 16, the cyclosporine clearance ranged from 9.8 to 15.5 mL/min/kg. In 9 liver transplant patients aged 0.6 to 5.6 years, clearance was 9.3 ± 5.4 mL/min/kg (assay: HPLC). In the pediatric population, cyclosporine capsules (modified) also demonstrates an increased bioavailability as compared to Sandimmune ® . In 7 liver de novo transplant patients aged 1.4 to 10 years, the absolute bioavailability of cyclosporine capsules (modified) was 43% (range 30% to 68%) and for Sandimmune ® in the same individuals absolute bioavailability was 28% (range 17% to 42%). Pediatric Pharmacokinetic Parameters (mean ± SD) Dose/day Dose/weight AUC 1 C max CL/F CL/F Patient Population (mg/d) (mg/kg/d) (ng·hr/mL) (ng/mL) (mL/min) (mL/min/kg) Stable liver transplant 2 Age 2 to 8, Dosed TID (N = 9) 101 ± 25 5.95 ± 1.32 2163 ± 801 629 ± 219 285 ± 94 16.6 ±
+HIV Protease inhibitors: The HIV protease inhibitors (e.g., indinavir, nelfinavir, ritonavir, and saquinavir) are known to inhibit cytochrome P-450 3A and thus could potentially increase the concentrations of cyclosporine, however no formal studies of the interaction are available. Care should be exercised when these drugs are administered concomitantly.
+
+Grapefruit juice: Grapefruit and grapefruit juice affect metabolism, increasing blood concentrations of cyclosporine, thus should be avoided.
 
 ===PAGE 6===
-Section 4.3 — Drug Interactions
+2. Drugs and Dietary Supplements That Decrease Cyclosporine Concentrations
 
-4.3 Age 8 to 15, Dosed BID (N = 8) 188 ± 55 4.96 ± 2.09 4272 ± 1462 975 ± 281 378 ± 80 10.2 ±
+Drugs/Dietary Supplements That Decrease Cyclosporine Concentrations
+| Category | Drugs |
+|---|---|
+| Antibiotics | nafcillin, rifampin |
+| Anticonvulsants | carbamazepine, oxcarbazepine, phenobarbital, phenytoin |
+| Other Drugs/Dietary Supplements | bosentan, St. John's Wort, octreotide, orlistat, sulfinpyrazone, terbinafine, ticlopidine |
 
 ===PAGE 7===
-Section 4.0 — Drug Interactions
+Cyclosporine — Bosentan, Boceprevir, and Telaprevir
 
-4.0 Stable liver transplant 3 Age 3, Dosed BID (N = 1) 120 8.33 5832 1050 171 1
+Bosentan: Co-administration of bosentan (250 to 1,000 mg every 12 hours based on tolerability) and cyclosporine (300 mg every 12 hours for 2 days then dosing to achieve a Cmin of 200 to 250 ng/mL) for 7 days in healthy subjects resulted in decreases in the cyclosporine mean dose-normalized AUC, Cmax, and trough concentration of approximately 50%, 30% and 60%, respectively, compared to when cyclosporine was given alone. Coadministration of cyclosporine with bosentan should be avoided.
+
+Boceprevir: Coadministration of boceprevir (800 mg three times daily for 7 days) and cyclosporine (100 mg single dose) in healthy subjects resulted in increases in the mean AUC and Cmax of cyclosporine approximately 2.7-fold and 2-fold, respectively, compared to when cyclosporine was given alone.
+
+Telaprevir: Coadministration of telaprevir (750 mg every 8 hours for 11 days) with cyclosporine (10 mg on Day 8) in healthy subjects resulted in increases in the mean dose-normalized AUC and Cmax of cyclosporine approximately 4.5-fold and 1.3-fold, respectively, compared to when cyclosporine (100 mg single dose) was given alone.
 
 ===PAGE 8===
-Section 1.9 — Drug Interactions
+Cyclosporine — St. John's Wort and Rifabutin
 
-1.9 Age 8 to 15, Dosed BID (N = 5) 158 ± 55 5.51 ± 1.91 4452 ± 2475 1013 ± 635 328 ± 121 11.0 ±
+St. John's Wort: There have been reports of a serious drug interaction between cyclosporine and the herbal dietary supplement, St. John's Wort. This interaction has been reported to produce a marked reduction in the blood concentrations of cyclosporine, resulting in subtherapeutic levels, rejection of transplanted organs, and graft loss.
+
+Rifabutin: Rifabutin is known to increase the metabolism of other drugs metabolized by the cytochrome P-450 system. The interaction between rifabutin and cyclosporine has not been studied. Care should be exercised when these two drugs are administered concomitantly.
 
 ===PAGE 9===
-Section 1.9 — Drug Interactions
+B. Effect of Cyclosporine on Other Drugs (CYP3A4 and P-glycoprotein inhibition)
 
-1.9 Stable renal transplant 3 Age 7 to 15, Dosed BID (N = 5) 328 ± 83 7.37 ± 4.11 6922 ± 1988 1827 ± 487 418 ± 143 8.7 ± 2.9 1 AUC was measured over one dosing interval. 2 Assay: Cyclo-trac specific monoclonal radioimmunoassay. 3 Assay: TDx specific monoclonal fluorescence polarization immunoassay.
+Cyclosporine is an inhibitor of CYP3A4 and of multiple drug efflux transporters (e.g., P-glycoprotein) and may increase plasma concentrations of comedications that are substrates of CYP3A4, P-glycoprotein, or organic anion transporter proteins. Cyclosporine may reduce the clearance of digoxin, colchicine, prednisolone, HMG-CoA reductase inhibitors (statins) and aliskiren, bosentan, dabigatran, repaglinide, NSAIDs, sirolimus, etoposide, and other drugs. See the full prescribing information of the other drug for further information and specific recommendations. The decision on coadministration of cyclosporine with other drugs or agents should be made by the healthcare provider following the careful assessment of benefits and risks.
+
+===PAGE 10===
+Cyclosporine — Digoxin and Colchicine
+
+Digoxin: Severe digitalis toxicity has been seen within days of starting cyclosporine in several patients taking digoxin. If digoxin is used concurrently with cyclosporine, serum digoxin concentrations should be monitored.
+
+Colchicine: There are reports on the potential of cyclosporine to enhance the toxic effects of colchicine such as myopathy and neuropathy, especially in patients with renal dysfunction. Concomitant administration of cyclosporine and colchicine results in significant increases in colchicine plasma concentrations. If colchicine is used concurrently with cyclosporine, a reduction in the dosage of colchicine is recommended.

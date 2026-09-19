@@ -28,3 +28,25 @@
 {"query": "Does allopurinol interact with warfarin?", "expected_document_title": "Allopurinol Interactions", "expected_page": 13, "category": "generic_name"}
 {"query": "Does Xanax interact with alcohol?", "expected_document_title": "Alprazolam Interactions", "expected_page": 2, "category": "colloquial"}
 {"query": "Is it safe to take my BP medicine, Cozaar, with potassium supplements?", "expected_document_title": "Losartan Interactions", "expected_page": 2, "category": "colloquial"}
+{"query": "Can I take clopidogrel with a CYP2C19 inhibitor?", "expected_document_title": "Clopidogrel Interactions", "expected_page": 3, "category": "generic_name"}
+{"query": "Does clopidogrel interact with NSAIDs?", "expected_document_title": "Clopidogrel Interactions", "expected_page": 5, "category": "generic_name"}
+{"query": "Do SSRIs increase bleeding risk with clopidogrel?", "expected_document_title": "Clopidogrel Interactions", "expected_page": 7, "category": "generic_name"}
+{"query": "Does digoxin interact with verapamil?", "expected_document_title": "Digoxin Interactions", "expected_page": 3, "category": "generic_name"}
+{"query": "Does spironolactone interact with lithium?", "expected_document_title": "Spironolactone Interactions", "expected_page": 3, "category": "generic_name"}
+{"query": "Can lisinopril be taken with a neprilysin inhibitor?", "expected_document_title": "Lisinopril Interactions", "expected_page": 8, "category": "generic_name"}
+{"query": "Does lisinopril interact with lithium?", "expected_document_title": "Lisinopril Interactions", "expected_page": 6, "category": "generic_name"}
+{"query": "Does levothyroxine affect warfarin?", "expected_document_title": "Levothyroxine Interactions", "expected_page": 4, "category": "generic_name"}
+{"query": "Can I take levothyroxine with ketamine?", "expected_document_title": "Levothyroxine Interactions", "expected_page": 7, "category": "generic_name"}
+{"query": "Does metoprolol interact with quinidine?", "expected_document_title": "Metoprolol Interactions", "expected_page": 4, "category": "generic_name"}
+{"query": "Does tamsulosin interact with sildenafil?", "expected_document_title": "Tamsulosin Interactions", "expected_page": 4, "category": "generic_name"}
+{"query": "Can I take gabapentin with Maalox?", "expected_document_title": "Gabapentin Interactions", "expected_page": 5, "category": "colloquial"}
+{"query": "Does gabapentin interact with morphine?", "expected_document_title": "Gabapentin Interactions", "expected_page": 3, "category": "generic_name"}
+{"query": "Does prednisone interact with vaccines?", "expected_document_title": "Prednisone Interactions", "expected_page": 20, "category": "generic_name"}
+{"query": "Does prednisone raise tendon rupture risk with fluoroquinolones?", "expected_document_title": "Prednisone Interactions", "expected_page": 12, "category": "generic_name"}
+{"query": "Does escitalopram interact with pimozide?", "expected_document_title": "Escitalopram Interactions", "expected_page": 3, "category": "generic_name"}
+{"query": "Can I take pantoprazole with methotrexate?", "expected_document_title": "Pantoprazole Interactions", "expected_page": 5, "category": "generic_name"}
+{"query": "Does amlodipine affect simvastatin?", "expected_document_title": "Amlodipine Interactions", "expected_page": 3, "category": "generic_name"}
+{"query": "Does azithromycin interact with warfarin?", "expected_document_title": "Azithromycin Interactions", "expected_page": 3, "category": "generic_name"}
+{"query": "Does atorvastatin interact with grapefruit juice?", "expected_document_title": "Atorvastatin Interactions", "expected_page": 2, "category": "generic_name"}
+{"query": "Can I take Dilantin with valproate?", "expected_document_title": "Phenytoin Interactions", "expected_page": 4, "category": "colloquial"}
+{"query": "Does cyclosporine interact with grapefruit juice?", "expected_document_title": "Cyclosporine Interactions", "expected_page": 5, "category": "generic_name"}

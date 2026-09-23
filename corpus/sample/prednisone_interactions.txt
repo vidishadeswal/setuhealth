@@ -17,7 +17,7 @@ or prescriber, and this tool remains a PROTOTYPE, not for real clinical decision
 
 
 ===PAGE 2===
-Drug Interactions — Drug Interactions Amphotericin B Injection and
+Drug Interactions — Amphotericin B Injection and Potassium-Depleting Agents
 
 Drug Interactions Amphotericin B Injection and Potassium-Depleting Agents When corticosteroids are administered concomitantly with potassium-depleting agents (e.g., amphotericin B, diuretics ), patients should be observed closely for development of hypokalemia. In addition, there have been cases reported in which concomitant use of amphotericin B and hydrocortisone was followed by cardiac enlargement and congestive heart failure.
 
